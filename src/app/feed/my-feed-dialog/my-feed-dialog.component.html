@@ -1,0 +1,23 @@
+<div mat-dialog-content class="container">
+    <mat-form-field>
+        <mat-label>Title:</mat-label>
+        <input matInput class="feedtitle" type="text" [(ngModel)]="data.title">
+      </mat-form-field>
+      <!-- <mat-form-field>
+        <mat-label>Details:</mat-label>
+        <input [(ngModel)]="data.details" matInput type=text>
+      </mat-form-field> -->
+  <!-- <p>What's your favorite animal?</p>
+  <mat-form-field>
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field> -->
+</div>
+
+<quill-editor [(ngModel)]="data.details"  [styles]="{height: '200px'}"></quill-editor>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

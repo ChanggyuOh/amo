@@ -16,3 +16,20 @@ mat-tab-group {
 mat-tab-group p {
     padding-top: 20px;
 }
+  
+.bg-transparent {
+    background-color: transparent;
+  }
+  
+  :host {
+    height: 100%;
+  }
+  
+  .photo {
+    object-fit: contain;
+  }
+  
+  .card {
+    width: 20rem;
+    margin: 0 auto;
+  }
