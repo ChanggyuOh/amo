@@ -53,12 +53,12 @@ import { QuillModule } from 'ngx-quill'
           // {
           //   id: GoogleLoginProvider.PROVIDER_ID,
           //   provider: new GoogleLoginProvider(
-          //     '865657788588-0prp7to72l38gnfh8r1g9d5okmo545rq.apps.googleusercontent.com'
+          //     'xxx.apps.googleusercontent.com'
           //   ),
           // },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('2497836857174911'),
+            provider: new FacebookLoginProvider('222'),
           },
           {
             id: AmazonLoginProvider.PROVIDER_ID,
