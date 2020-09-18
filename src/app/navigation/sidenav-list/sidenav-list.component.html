@@ -13,6 +13,9 @@
         <a matline>Example</a>
     </mat-list-item>
     <mat-menu #menu="matMenu">
+        <a mat-list-item routerLink="/utils/qr-gen" (click)="onSidenavClose()">
+            <mat-icon>qrcode_2</mat-icon><span class="nav-caption">QR Gen</span>
+        </a>
         <button mat-menu-item (click)="onSidenavClose()">View profile</button>
         <button mat-menu-item (click)="onSidenavClose()">Add contact</button>
       </mat-menu>

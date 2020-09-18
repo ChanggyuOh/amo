@@ -1,0 +1,13 @@
+<p>qr-gen works!</p>
+<div class="box">
+    <div>
+        <ngx-qrcode
+        [elementType]="elementType"
+        [errorCorrectionLevel]="correctionLevel"
+        [value]="qrValue"
+        cssClass="bshadow"></ngx-qrcode>
+    </div>
+    <div>
+        <textarea [(ngModel)] = "qrValue"></textarea>
+    </div>
+</div>

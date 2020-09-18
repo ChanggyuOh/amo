@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'owner', loadChildren: () => import('../owner/owner.module').then(m => m.OwnerModule) }, 
   { path: 'feed', loadChildren: () => import('../feed/feed.module').then(m => m.FeedModule)},
+  { path: 'utils', loadChildren: () => import('../utils/utils.module').then(m => m.UtilsModule)},
   { path: '', component: HomeComponent}
   // { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
