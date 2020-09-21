@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MyFeedDialogComponent } from '../my-feed-dialog/my-feed-dialog.component';
-import { MyFeedDialogData } from '../../_interface/myfeed.dialog.modal'
+import { MyFeedDialogData } from '../../_interface/myfeed.dialog.model'
 @Component({
   selector: 'app-my-feed-list',
   templateUrl: './my-feed-list.component.html',
