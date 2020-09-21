@@ -20,8 +20,8 @@ import {
   AmazonLoginProvider,
 } from 'angularx-social-login';
 import { FeedModule } from './feed/feed.module';
-import { QuillModule } from 'ngx-quill'
-import { UtilsModule } from './utils/utils.module'
+import { QuillModule } from 'ngx-quill';
+import { UtilsModule } from './utils/utils.module';
 
 @NgModule({
   declarations: [

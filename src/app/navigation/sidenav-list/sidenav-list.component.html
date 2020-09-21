@@ -9,14 +9,18 @@
         <mat-icon>account_balance</mat-icon><span class="nav-caption">Account Actions</span>
     </a>
     <mat-list-item [matMenuTriggerFor]="menu">
-        <mat-icon>unfold_more</mat-icon>
-        <a matline>Example</a>
+        <mat-icon>read_more</mat-icon>
+        <a matline>Utils</a>
     </mat-list-item>
     <mat-menu #menu="matMenu">
-        <a mat-list-item routerLink="/utils/qr-gen" (click)="onSidenavClose()">
-            <mat-icon>qrcode_2</mat-icon><span class="nav-caption">QR Gen</span>
-        </a>
-        <button mat-menu-item (click)="onSidenavClose()">View profile</button>
-        <button mat-menu-item (click)="onSidenavClose()">Add contact</button>
-      </mat-menu>
+        <button mat-menu-item routerLink="/utils/flowy" (click)="onSidenavClose()">
+            <mat-icon>account_tree</mat-icon><span>Flowy</span>
+        </button>
+        <button mat-menu-item routerLink="/utils/qr-gen" (click)="onSidenavClose()">
+            <mat-icon>qr_code_2</mat-icon><span>QR-Code</span>
+        </button>        
+        <button mat-menu-item routerLink="/utils/my-file-explorer" (click)="onSidenavClose()">
+            <mat-icon>folder</mat-icon><span>File Explorer</span>
+        </button>        
+    </mat-menu>
   </mat-nav-list>

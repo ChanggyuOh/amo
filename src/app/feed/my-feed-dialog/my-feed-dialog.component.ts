@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MyFeedDialogData } from '../../_interface/myfeed.dialog.modal';
+import { MyFeedDialogData } from '../../_interface/myfeed.dialog.model';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
