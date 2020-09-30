@@ -1,21 +1,23 @@
 <div mat-dialog-content class="container">
     <mat-form-field>
-        <mat-label>Title:</mat-label>
+        <mat-label>Hi {{ user.name }}, What's in your mind?</mat-label>
         <input matInput class="feedtitle" type="text" [(ngModel)]="data.title">
-      </mat-form-field>
-      <!-- <mat-form-field>
-        <mat-label>Details:</mat-label>
-        <input [(ngModel)]="data.details" matInput type=text>
-      </mat-form-field> -->
-  <!-- <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field> -->
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-icon matPrefix>add_a_photo</mat-icon>
+      <mat-label>Do you have a image link to share?</mat-label>
+      <input matInput class="feedtitle" type="text" [(ngModel)]="data.imageUrl">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-icon matPrefix>ondemand_video</mat-icon>
+      <mat-label>Do you want to share a video link?</mat-label>
+      <input matInput class="feedtitle" type="text" [(ngModel)]="data.videoUrl">
+    </mat-form-field>
 </div>
-
-<quill-editor [(ngModel)]="data.details"  [styles]="{height: '200px'}"></quill-editor>
-
+<label>Content:</label>
+<quill-editor [(ngModel)]="data.details"  [styles]="{height: '200px'}"></quill-editor> 
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>

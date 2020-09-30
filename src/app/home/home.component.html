@@ -2,7 +2,7 @@
     <div fxFlexAlign="center">
       <p>Welcome to the Material Angular OwnerAccount Application</p>
     </div>
-    <div class="jumbotron bg-transparent text-center">
+    <!-- <div class="jumbotron bg-transparent text-center">
       <div *ngIf="!user" class="card text-center">
         <h6 class="card-header">
           Social Login Demo
@@ -16,7 +16,9 @@
           <button class="btn btn-social-icon btn-facebook mx-1" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
           <button class="btn btn-social-icon btn-amazon mx-1" (click)="signInWithAmazon()"><span class="fa fa-amazon"></span></button>
         </div>
-      </div>
+      </div>-->
+    
+    <div>
       <div *ngIf="user" class="card text-center">
         <h6 class="card-header">
           Social Login Demo
@@ -32,7 +34,7 @@
           <button class="btn btn-danger" (click)="signOut()">Sign out</button>
         </div>
       </div>
-    </div>
+    </div> 
     <p>In this application we are going to work with:</p>
     <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
       <mat-tab label="Material Components"> 
@@ -46,4 +48,6 @@
         </mat-tab>
     </mat-tab-group>
   </section>
+  <app-material-file-upload (complete)="onFileComplete($event)"></app-material-file-upload>
   <quill-editor></quill-editor>
+ 

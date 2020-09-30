@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Pipe, Component, OnInit, PipeTransform } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MyFeedDialogComponent } from '../my-feed-dialog/my-feed-dialog.component';
-import { MyFeedDialogData } from '../../_interface/myfeed.dialog.model'
+import { MyFeedDialogData } from '../../_interface/myfeed.dialog.model';
+
 @Component({
   selector: 'app-my-feed-list',
   templateUrl: './my-feed-list.component.html',
@@ -14,7 +16,9 @@ export class MyFeedListComponent implements OnInit {
     title: '',
     details: '',
     buttonText: 'Button',
-    img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
+    img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg',
+    imageUrl: '',
+    videoUrl: ''
   };
 
   cards = [
@@ -31,7 +35,7 @@ export class MyFeedListComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(MyFeedDialogComponent, {
       width: '800px',
-      height: '450px',
+      height: '600px',
       data: this.data
     });
 
@@ -42,6 +46,14 @@ export class MyFeedListComponent implements OnInit {
       {
         console.log(result);
         this.cards.push(result);
+        this.data = {
+          title: '',
+          details: '',
+          buttonText: 'Button',
+          img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg',
+          imageUrl:'',
+          videoUrl:''
+        };
       }
     });
   }

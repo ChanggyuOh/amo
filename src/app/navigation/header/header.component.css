@@ -28,3 +28,9 @@ mat-icon {
 .search-bar * { color: white !important; }
 .search-bar input { border-bottom-color: white; }
 .md-errors-spacer { display:none; }
+
+.btn-social-icon {
+    width: 32px!important;
+    min-width: unset!important;
+}
+.login-label-center { justify-content: center;}
