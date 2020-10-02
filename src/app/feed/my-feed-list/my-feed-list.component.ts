@@ -1,8 +1,10 @@
-import { Pipe, Component, OnInit, PipeTransform } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MyFeedDialogComponent } from '../my-feed-dialog/my-feed-dialog.component';
 import { MyFeedDialogData } from '../../_interface/myfeed.dialog.model';
+import { RepositoryService } from '../../shared/repository.service';
+import { SocialUser, SocialAuthService } from 'angularx-social-login';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-my-feed-list',
@@ -12,25 +14,43 @@ import { MyFeedDialogData } from '../../_interface/myfeed.dialog.model';
 export class MyFeedListComponent implements OnInit {
   title: string;
   details: string;
+  user: SocialUser;
+  loggedIn: boolean;
+
   data: MyFeedDialogData = {
+    id: 0,
+    ownerId: 0,
     title: '',
     details: '',
-    buttonText: 'Button',
-    img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg',
     imageUrl: '',
     videoUrl: ''
   };
 
-  cards = [
-    {
-      title: 'Card Title 1',
-      details: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
+  cards: MyFeedDialogData[] = [
   ];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, 
+              private repoService: RepositoryService,
+              private authService: SocialAuthService) {}
+  ngOnInit(): void {
+    var user = localStorage.getItem('user');
+    if (user != null)
+    {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.loggedIn = true;
+    }
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
+
+    this.repoService.getData('feeds/1/10',this.user)
+    .pipe(
+      map(response => response),
+      tap(users => console.log("users array", users))    // users array [Object, Object, Object]
+    )
+    .subscribe((cards:MyFeedDialogData[]) => this.cards = cards);
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(MyFeedDialogComponent, {
@@ -45,12 +65,13 @@ export class MyFeedListComponent implements OnInit {
       if (result != null)
       {
         console.log(result);
-        this.cards.push(result);
+        this.saveFeed(result);
+
         this.data = {
+          id: 0,
+          ownerId: 0,
           title: '',
           details: '',
-          buttonText: 'Button',
-          img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg',
           imageUrl:'',
           videoUrl:''
         };
@@ -58,7 +79,13 @@ export class MyFeedListComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  private saveFeed = (feed: MyFeedDialogData) => {
+    if (feed.videoUrl)
+      feed.videoUrl = feed.videoUrl.replace("/watch?v=","/embed/");
 
+    this.repoService.create('feeds', feed, this.user)
+    .subscribe((res:MyFeedDialogData) => {
+      this.cards.push(res);
+    })
+  }
 }

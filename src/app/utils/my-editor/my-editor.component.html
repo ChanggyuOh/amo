@@ -1,0 +1,21 @@
+<form class="example-form">
+<mat-form-field>
+    <input type="text"
+            placeholder="Select a language"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getLanguage($event.option.value)'>
+    <mat-option *ngFor="let language of filteredOptions | async" [value]="language">
+        {{language}}
+    </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
+</form>
+<ngx-monaco-editor [options]="options" 
+                   [model]="model" 
+                   (onInit)="onInitEditor($event)"
+                   class="my-code-editor"
+                   style="height: 80vh"
+                   #editor>
+</ngx-monaco-editor>

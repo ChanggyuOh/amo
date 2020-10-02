@@ -25,6 +25,10 @@
                 "glob": "**/*", 
                 "input": "node_modules/monaco-editor/min/vs", "output": "./vs/" 
               },
+              { 
+                "glob": "**/*", 
+                "input": "node_modules/monaco-editor/min-maps", "output": "./min-maps/" 
+              },
               "src/favicon.ico",
               "src/assets",
               "src/web.config"

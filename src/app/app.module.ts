@@ -25,6 +25,7 @@ import { UtilsModule } from './utils/utils.module';
 import { MaterialFileUploadComponent } from './material-file-upload/material-file-upload.component';
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+
 export function onMonacoLoad() {
  
   console.log((window as any).monaco);

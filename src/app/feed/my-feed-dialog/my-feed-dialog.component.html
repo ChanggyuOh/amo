@@ -17,7 +17,11 @@
     </mat-form-field>
 </div>
 <label>Content:</label>
-<quill-editor [(ngModel)]="data.details"  [styles]="{height: '200px'}"></quill-editor> 
+<quill-editor [(ngModel)]="data.details"  
+              [styles]="{height: '200px'}"
+              [modules]="editorOptions"
+              ></quill-editor> 
+<!-- <textarea rows="15" matInput placeholder="Your thought" [(ngModel)]="data.details"></textarea> -->
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
