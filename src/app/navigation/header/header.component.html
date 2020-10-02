@@ -21,18 +21,34 @@
     </ul>
     <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+            <!-- <li>
+                <a mat-button routerLink="/register" *ngIf="!loggedIn">
+                    <mat-icon>how_to_reg</mat-icon>
+                    <span>Register</span>
+                </a>
+            </li> -->
+            <li><span class="login-label-center" *ngIf="!loggedIn">Login:</span></li>
             <li>
-                <a mat-button routerLink="/register">Register</a>
-            </li>
-            <li>
-                <a mat-button routerLink="/login">Login</a>
+                
+                <a mat-button (click)="signInWithGoogle()" *ngIf="!loggedIn" class="btn btn-social-icon btn-amazon mx-1">
+                    <span class="fa fa-google"></span>
+                </a>
+                <a mat-button (click)="signInWithFB()" *ngIf="!loggedIn" class="btn btn-social-icon btn-amazon mx-1">
+                    <span class="fa fa-facebook"></span>
+                </a>
+                <a mat-button (click)="onLogin()" *ngIf="!loggedIn" class="btn btn-social-icon btn-amazon mx-1">
+                    <span class="fa fa-amazon"></span>
+                </a>
+                <a mat-button (click)="signOut()" *ngIf="loggedIn">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Logout</span>
+                </a>
             </li>
             <li>
                 <!-- Search button (initiates search) -->
-                <button (click)="onInitSearch()">
+                <a mat-button (click)="openDialog()">
                     <mat-icon>search</mat-icon>
-                    <span>Search</span>
-                </button>
+                </a>
             </li>
         </ul>
     </div>

@@ -22,6 +22,52 @@ import {
 import { FeedModule } from './feed/feed.module';
 import { QuillModule } from 'ngx-quill';
 import { UtilsModule } from './utils/utils.module';
+import { MaterialFileUploadComponent } from './material-file-upload/material-file-upload.component';
+import { SearchDialogComponent } from './search-dialog/search-dialog.component';
+import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+
+export function onMonacoLoad() {
+ 
+  console.log((window as any).monaco);
+  let monaco = (<any>window).monaco;
+  const uri = monaco.Uri.parse('a://b/foo.json');
+  monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+    validate: true,
+    schemas: [{
+      uri: 'http://myserver/foo-schema.json',
+      fileMatch: [uri.toString()],
+      schema: {
+        type: 'object',
+        properties: {
+          p1: {
+            enum: ['v1', 'v2']
+          },
+          p2: {
+            $ref: 'http://myserver/bar-schema.json'
+          }
+        }
+      }
+    }, {
+      uri: 'http://myserver/bar-schema.json',
+      fileMatch: [uri.toString()],
+      schema: {
+        type: 'object',
+        properties: {
+          q1: {
+            enum: ['x1', 'x2']
+          }
+        }
+      }
+    }]
+  });
+ 
+}
+
+const monacoConfig: NgxMonacoEditorConfig = {
+  baseUrl: 'vs', // configure base path for monaco editor default: './assets'
+  defaultOptions: { scrollBeyondLastLine: false }, // pass default options to be used
+  onMonacoLoad
+};
 
 @NgModule({
   declarations: [
@@ -29,7 +75,9 @@ import { UtilsModule } from './utils/utils.module';
     LayoutComponent,
     HomeComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    MaterialFileUploadComponent,
+    SearchDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +93,7 @@ import { UtilsModule } from './utils/utils.module';
     FeedModule,
     UtilsModule,
     QuillModule.forRoot(),
+    MonacoEditorModule.forRoot(monacoConfig),
   ],
   providers: [
     {
@@ -52,15 +101,15 @@ import { UtilsModule } from './utils/utils.module';
       useValue: {
         autoLogin: false,
         providers: [
-          // {
-          //   id: GoogleLoginProvider.PROVIDER_ID,
-          //   provider: new GoogleLoginProvider(
-          //     'xxx.apps.googleusercontent.com'
-          //   ),
-          // },
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '865657788588-0prp7to72l38gnfh8r1g9d5okmo545rq.apps.googleusercontent.com'
+            ),
+          },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('222'),
+            provider: new FacebookLoginProvider('2497836857174911'),
           },
           {
             id: AmazonLoginProvider.PROVIDER_ID,

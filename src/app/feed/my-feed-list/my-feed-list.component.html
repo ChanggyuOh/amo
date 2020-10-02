@@ -1,7 +1,6 @@
-<p>my-feed-list works!</p>
 <div class="container">
-    <mat-card class="myfeed-card">
-        <mat-card class="myfeed-card">
+    <div class="row">
+      <mat-card class="myfeed-card">
             <mat-card-header>
                 <mat-card-title>
                     <h4>What's your opinion in mind?</h4>
@@ -14,22 +13,24 @@
                     <span>Ask people what they think. Say It Out Laud!!!</span>
                 </a>
             </mat-card-content>
-        </mat-card>
-    </mat-card>
-</div>
-<div class="container">
-    <div class="row">
+      </mat-card>
       <div class="col-md-3 mx-auto my-5" *ngFor="let card of cards">
         <mat-card class="myfeed-card">
           <mat-card-header>
             <mat-card-title>
                 <h4>{{card.title}}</h4>
             </mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            <mat-card-subtitle>
+              <p [innerHtml]="card.details | safe:'html'"></p>
+            </mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-imgage src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          <img mat-card-imgage *ngIf="card.imageUrl" [src]="card.imageUrl | safe:'url'">
           <mat-card-content>
-              {{card.details}}
+            <iframe *ngIf="card.videoUrl" 
+              [src]="card.videoUrl | safe:'resourceUrl'" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            
           </mat-card-content>
           <mat-card-actions>
               <a mat-button>LIKE</a>
