@@ -25,6 +25,7 @@ import { UtilsModule } from './utils/utils.module';
 import { MaterialFileUploadComponent } from './material-file-upload/material-file-upload.component';
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+import { TvComponent } from './tv/tv.component';
 
 export function onMonacoLoad() {
  
@@ -77,7 +78,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
     HeaderComponent,
     SidenavListComponent,
     MaterialFileUploadComponent,
-    SearchDialogComponent
+    SearchDialogComponent,
+    TvComponent
   ],
   imports: [
     BrowserModule,
@@ -104,12 +106,12 @@ const monacoConfig: NgxMonacoEditorConfig = {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              'xxx'
+              '865657788588-0prp7to72l38gnfh8r1g9d5okmo545rq.apps.googleusercontent.com'
             ),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('222'),
+            provider: new FacebookLoginProvider('2497836857174911'),
           },
           {
             id: AmazonLoginProvider.PROVIDER_ID,

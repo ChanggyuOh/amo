@@ -5,6 +5,7 @@ import { MyFeedDialogData } from '../../_interface/myfeed.dialog.model';
 import { RepositoryService } from '../../shared/repository.service';
 import { SocialUser, SocialAuthService } from 'angularx-social-login';
 import { map, tap } from 'rxjs/operators';
+import { BpmnDialogComponent } from '../bpmn-dialog/bpmn-dialog.component'
 
 @Component({
   selector: 'app-my-feed-list',
@@ -23,7 +24,8 @@ export class MyFeedListComponent implements OnInit {
     title: '',
     details: '',
     imageUrl: '',
-    videoUrl: ''
+    videoUrl: '',
+    hashTags: ''
   };
 
   cards: MyFeedDialogData[] = [
@@ -42,6 +44,12 @@ export class MyFeedListComponent implements OnInit {
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
+      this.repoService.getData('feeds/1/10',this.user)
+      .pipe(
+        map(response => response),
+        tap(users => console.log("users array", users))    // users array [Object, Object, Object]
+      )
+      .subscribe((cards:MyFeedDialogData[]) => this.cards = cards);
     });
 
     this.repoService.getData('feeds/1/10',this.user)
@@ -52,19 +60,27 @@ export class MyFeedListComponent implements OnInit {
     .subscribe((cards:MyFeedDialogData[]) => this.cards = cards);
   }
 
+  openBpmnDialog(): void {
+    const dialogRef = this.dialog.open(BpmnDialogComponent, {
+      width: '800px',
+      height: '640px',
+      //data: this.data
+    });
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(MyFeedDialogComponent, {
       width: '800px',
-      height: '600px',
+      height: '640px',
       data: this.data
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      //console.log('The dialog was closed');
       
       if (result != null)
       {
-        console.log(result);
+        //console.log(result);
         this.saveFeed(result);
 
         this.data = {
@@ -73,7 +89,8 @@ export class MyFeedListComponent implements OnInit {
           title: '',
           details: '',
           imageUrl:'',
-          videoUrl:''
+          videoUrl:'',
+          hashTags:''
         };
       }
     });
@@ -85,7 +102,7 @@ export class MyFeedListComponent implements OnInit {
 
     this.repoService.create('feeds', feed, this.user)
     .subscribe((res:MyFeedDialogData) => {
-      this.cards.push(res);
+      this.cards.splice(0,0,res);
     })
   }
 }

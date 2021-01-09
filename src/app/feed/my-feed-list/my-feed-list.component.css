@@ -29,3 +29,25 @@
     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
     height: 300px;
   }
+
+  .example-box.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .example-chip .cdk-drop-list-dragging {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  .diagram-parent {
+    height: 400px;
+    border: solid 3px #EEE;
+    position: relative;
+  }
+  
+  .import-error {
+    color: red;
+    padding: 20px;
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+  }

@@ -4,5 +4,6 @@ export interface MyFeedDialogData {
     details: string;
     title: string;
     imageUrl: string,
-    videoUrl: string
+    videoUrl: string,
+    hashTags: string
   }
