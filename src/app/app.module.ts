@@ -26,6 +26,8 @@ import { MaterialFileUploadComponent } from './material-file-upload/material-fil
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { TvComponent } from './tv/tv.component';
+import { TvDialogComponent } from './tv/tv-dialog/tv-dialog.component';
+import { CarousalComponent } from './feed/carousal/carousal.component';
 
 export function onMonacoLoad() {
  
@@ -79,7 +81,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
     SidenavListComponent,
     MaterialFileUploadComponent,
     SearchDialogComponent,
-    TvComponent
+    TvComponent,
+    TvDialogComponent,
   ],
   imports: [
     BrowserModule,

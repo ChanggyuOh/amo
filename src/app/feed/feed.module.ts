@@ -10,7 +10,8 @@ import { QuillModule } from 'ngx-quill'
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
 import { BpmnDialogComponent } from './bpmn-dialog/bpmn-dialog.component';
 import { DiagramComponent } from './diagram/diagram.component';
-
+import { CarousalComponent } from './carousal/carousal.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
@@ -35,13 +36,14 @@ export class SafePipe implements PipeTransform {
 } 
 
 @NgModule({
-  declarations: [FeedListComponent, MyFeedListComponent, MyFeedDialogComponent, SafePipe, BpmnDialogComponent, DiagramComponent],
+  declarations: [FeedListComponent, MyFeedListComponent, MyFeedDialogComponent, SafePipe, BpmnDialogComponent, DiagramComponent, CarousalComponent],
   imports: [
     CommonModule,
     FeedRoutingModule,
     MaterialModule,
     FormsModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    IvyCarouselModule
   ]
 })
 export class FeedModule { }

@@ -1,0 +1,39 @@
+<div class="container" ng-if="!refresh">
+	<h2>Images in template</h2>
+    <carousel loop="true" autoplay="true" autoplayInterval="500" dots="true">
+      <div class="carousel-cells">
+		<div *ngFor="let item of data;let i = index" 
+		class="carousel-cell" 
+		[style]="'transform: translateX('+i *210+'px); width: 200px;'">
+			<mat-card class="myfeed-card blockelem create-flowy noselect">
+				<mat-card-header>
+				</mat-card-header>
+				<img mat-card-imgage src={{item.imageUrl}} *ngIf="item.imageUrl">
+				<mat-card-content>
+					<iframe *ngIf="item.videoUrl" 
+					[src]="item.videoUrl | safe:'resourceUrl'" 
+					frameborder="0" 
+					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					
+					{{item.title}}
+					<mat-chip-list
+					class="example-chip"
+					cdkDropList 
+					*ngIf="item.hashtag"
+					cdkDropListOrientation="horizontal"
+					(cdkDropListDropped)="drop($event)">
+					<mat-chip
+					class="example-box"
+					cdkDrag
+					*ngFor="let tag of item.hashtag.split(',')">
+					{{tag}}
+					</mat-chip>
+				</mat-chip-list>
+				</mat-card-content>
+			</mat-card>
+		</div>
+      </div>
+    </carousel>
+  </div>
+
+
