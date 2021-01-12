@@ -1,39 +1,55 @@
-<div class="container" ng-if="!refresh">
-	<h2>Images in template</h2>
-    <carousel loop="true" autoplay="true" autoplayInterval="500" dots="true">
-      <div class="carousel-cells">
-		<div *ngFor="let item of data;let i = index" 
-		class="carousel-cell" 
-		[style]="'transform: translateX('+i *210+'px); width: 200px;'">
-			<mat-card class="myfeed-card blockelem create-flowy noselect">
+<div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+	<swiper 
+		class="swiper-container" 
+		fxFlex="auto" 
+		[config]="config" 
+		[disabled]="disabled"
+		(indexChange)="onIndexChange($event)" 
+		(swiperTransitionStart)="onSwiperEvent('transitionStart')" 
+		(swiperTransitionEnd)="onSwiperEvent('transitionEnd')">
+
+	<div *ngFor="let card of data" class="swiper-slide">
+		<div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+			<mat-card class="myfeed-card">
 				<mat-card-header>
+				  <mat-card-title>
+					  <h4>{{card.title}}</h4>
+				  </mat-card-title>
+				  
+				  <mat-card-subtitle>
+					<p [innerHtml]="card.details | safe:'html'"></p>
+				  </mat-card-subtitle>
 				</mat-card-header>
-				<img mat-card-imgage src={{item.imageUrl}} *ngIf="item.imageUrl">
+				<img mat-card-imgage *ngIf="card.imageUrl" [src]="card.imageUrl | safe:'url'">
 				<mat-card-content>
-					<iframe *ngIf="item.videoUrl" 
-					[src]="item.videoUrl | safe:'resourceUrl'" 
+				  <iframe *ngIf="card.videoUrl" 
+					[src]="card.videoUrl | safe:'resourceUrl'" 
 					frameborder="0" 
 					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-					
-					{{item.title}}
+				  
 					<mat-chip-list
 					class="example-chip"
 					cdkDropList 
-					*ngIf="item.hashtag"
+					*ngIf="card.hashTags"
 					cdkDropListOrientation="horizontal"
 					(cdkDropListDropped)="drop($event)">
 					<mat-chip
-					class="example-box"
-					cdkDrag
-					*ngFor="let tag of item.hashtag.split(',')">
-					{{tag}}
+					  class="example-box"
+					  cdkDrag
+					  *ngFor="let hashTag of card.hashTags.split(',')">
+					  {{hashTag}}
 					</mat-chip>
-				</mat-chip-list>
+				  </mat-chip-list>
 				</mat-card-content>
-			</mat-card>
+				<mat-card-actions>
+					<a mat-button>LIKE</a>
+					<a mat-button>SHARE</a>
+				</mat-card-actions>
+			  </mat-card>
+
 		</div>
-      </div>
-    </carousel>
-  </div>
+	</div>
+	</swiper>
+</div>
 
-
+  

@@ -14,12 +14,15 @@ export class FeedListComponent implements OnInit, OnDestroy {
   details: string;
   cards: FeedItem[] = [];
   secondCards: FeedItem[] = [];
+  thirdCards: FeedItem[] = [];
   ds1: Subscription;
   ds2: Subscription;
+  ds3: Subscription;
+
   constructor(private repoService: RepositoryService) { }
 
   ngOnInit(): void {
-    this.ds1 = this.repoService.getData('feeds/1/5',null)
+    this.ds1 = this.repoService.getData('feeds/1/15',null)
     .pipe(
       map(response => response)
     )
@@ -30,10 +33,17 @@ export class FeedListComponent implements OnInit, OnDestroy {
       map(response => response)
     )
     .subscribe((cards:FeedItem[]) => this.secondCards = cards);
+
+    this.ds2 = this.repoService.getData('feeds/3/5',null)
+    .pipe(
+      map(response => response)
+    )
+    .subscribe((cards:FeedItem[]) => this.thirdCards = cards);
   }
 
   ngOnDestroy(): void{
     this.ds1.unsubscribe();
     this.ds2.unsubscribe();
+    this.ds3.unsubscribe();
   }
 }

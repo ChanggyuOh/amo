@@ -4,13 +4,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { environment } from './../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
 import { SocialUser } from 'angularx-social-login';
-
+import { environment } from './../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class TvService {
   //properties needed
-  private baseUrlLogin = 'https://localhost:5001/tv';
+  private baseUrlLogin = environment.urlAddress+'/tv';
   user: SocialUser;
   defaultHeaders: HttpHeaders;
 

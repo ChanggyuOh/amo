@@ -11,7 +11,9 @@ import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl
 import { BpmnDialogComponent } from './bpmn-dialog/bpmn-dialog.component';
 import { DiagramComponent } from './diagram/diagram.component';
 import { CarousalComponent } from './carousal/carousal.component';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
@@ -35,6 +37,16 @@ export class SafePipe implements PipeTransform {
   }
 } 
 
+// SwiperOptions from 'swiper' could also be used here instead of SwiperConfigInterface
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  observer: true,
+  direction: 'horizontal',
+  threshold: 50,
+  spaceBetween: 5,
+  slidesPerView: 1,
+  centeredSlides: true
+};
+
 @NgModule({
   declarations: [FeedListComponent, MyFeedListComponent, MyFeedDialogComponent, SafePipe, BpmnDialogComponent, DiagramComponent, CarousalComponent],
   imports: [
@@ -42,8 +54,15 @@ export class SafePipe implements PipeTransform {
     FeedRoutingModule,
     MaterialModule,
     FormsModule,
+    MatCarouselModule,
+    SwiperModule,
     QuillModule.forRoot(),
-    IvyCarouselModule
+  ],
+  providers: [
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
   ]
 })
 export class FeedModule { }

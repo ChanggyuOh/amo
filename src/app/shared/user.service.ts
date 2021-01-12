@@ -3,13 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { environment } from './../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
 import { SocialUser } from 'angularx-social-login';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   //properties needed
-  private baseUrlLogin = 'https://localhost:5001/users';
+  private baseUrlLogin = environment.urlAddress+'/users';
   user: SocialUser;
   defaultHeaders: HttpHeaders;
 
