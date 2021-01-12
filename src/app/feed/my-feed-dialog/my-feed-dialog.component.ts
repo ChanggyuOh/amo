@@ -3,6 +3,12 @@ import { MyFeedDialogData } from '../../_interface/myfeed.dialog.model';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { SocialAuthService } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
+
+export interface HashTag {
+  name: string;
+}
 
 @Component({
   selector: 'app-my-feed-dialog',
@@ -12,6 +18,14 @@ import { SocialUser } from "angularx-social-login";
 export class MyFeedDialogComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  hashTags: HashTag[] = [
+  ];
+
   public editorOptions = {
     toolbar: {
       container:
@@ -57,6 +71,31 @@ export class MyFeedDialogComponent implements OnInit {
       this.user = user;
       this.loggedIn = (user != null);
     });
+    if (this.data.hashTags)
+      this.data.hashTags.split(',').forEach(name => this.hashTags.push({name}));
+  }
+  public add = (event: MatChipInputEvent): void => {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.hashTags.push({name: value.trim()});
+      this.data.hashTags = this.hashTags.map(tag => tag.name).join();
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
   }
 
+  public remove = (hashTag: HashTag): void => {
+    const index = this.hashTags.indexOf(hashTag);
+
+    if (index >= 0) {
+      this.hashTags.splice(index, 1);
+      this.data.hashTags = this.hashTags.map(tag => tag.name).join();
+    }
+  }
 }

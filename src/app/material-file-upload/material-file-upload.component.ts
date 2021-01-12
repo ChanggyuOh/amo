@@ -5,6 +5,7 @@ import { HttpClient, HttpResponse, HttpRequest,
 import { Subscription } from 'rxjs';
 import { of } from 'rxjs';
 import { catchError, last, map, tap } from 'rxjs/operators';
+import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-material-file-upload',
@@ -25,7 +26,7 @@ export class MaterialFileUploadComponent implements OnInit {
       /** Name used in form which will be sent in HTTP request. */
       @Input() param = 'file';
       /** Target URL for file uploading. */
-      @Input() target = 'https://localhost:5001/resource';
+      @Input() target = environment.urlAddress+'/resource';
       /** File extension that accepted, same as 'accept' of <input type="file" />. 
           By the default, it's set to 'image/*'. */
       @Input() accept = 'image/*';

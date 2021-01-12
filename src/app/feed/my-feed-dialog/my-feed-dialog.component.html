@@ -23,6 +23,21 @@
               ></quill-editor> 
 <!-- <textarea rows="15" matInput placeholder="Your thought" [(ngModel)]="data.details"></textarea> -->
 
+<mat-form-field class="example-chip-list">
+  <mat-chip-list #chipList aria-label="HashTag selection">
+    <mat-chip *ngFor="let hashtag of hashTags" [selectable]="selectable"
+             [removable]="removable" (removed)="remove(hashtag)">
+      {{hashtag.name}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="Add Hashtag..."
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>
+
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
   <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>

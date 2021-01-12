@@ -12,6 +12,10 @@
                     <mat-icon>fact_check</mat-icon>
                     <span>Ask people what they think. Say It Out Laud!!!</span>
                 </a>
+                <a matt-button (click)="openBpmnDialog()">
+                  <mat-icon>build</mat-icon>
+                  <span>bpmn</span>
+                </a>
             </mat-card-content>
       </mat-card>
       <div class="col-md-3 mx-auto my-5" *ngFor="let card of cards">
@@ -20,6 +24,7 @@
             <mat-card-title>
                 <h4>{{card.title}}</h4>
             </mat-card-title>
+            
             <mat-card-subtitle>
               <p [innerHtml]="card.details | safe:'html'"></p>
             </mat-card-subtitle>
@@ -31,6 +36,19 @@
               frameborder="0" 
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             
+              <mat-chip-list
+              class="example-chip"
+              cdkDropList 
+              *ngIf="card.hashTags"
+              cdkDropListOrientation="horizontal"
+              (cdkDropListDropped)="drop($event)">
+              <mat-chip
+                class="example-box"
+                cdkDrag
+                *ngFor="let hashTag of card.hashTags.split(',')">
+                {{hashTag}}
+              </mat-chip>
+            </mat-chip-list>
           </mat-card-content>
           <mat-card-actions>
               <a mat-button>LIKE</a>

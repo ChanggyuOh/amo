@@ -1,4 +1,4 @@
-export interface MyFeedDialogData {
+export interface FeedItem {
     id: number,
     ownerId: number,
     details: string;
