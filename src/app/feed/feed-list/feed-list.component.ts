@@ -18,11 +18,12 @@ export class FeedListComponent implements OnInit, OnDestroy {
   ds1: Subscription;
   ds2: Subscription;
   ds3: Subscription;
-
+  topCaroId: string = 'topCaroId';
+  secondCaroId: string = 'secondCaroId';
   constructor(private repoService: RepositoryService) { }
 
   ngOnInit(): void {
-    this.ds1 = this.repoService.getData('feeds/1/15',null)
+    this.ds1 = this.repoService.getData('feeds/1/10',null)
     .pipe(
       map(response => response)
     )
@@ -44,6 +45,6 @@ export class FeedListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void{
     this.ds1.unsubscribe();
     this.ds2.unsubscribe();
-    this.ds3.unsubscribe();
+    // this.ds3.unsubscribe();
   }
 }

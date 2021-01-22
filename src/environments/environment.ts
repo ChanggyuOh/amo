@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  urlAddress: 'https://localhost:5001'
+  urlAddress: 'https://localhost:5001',
+  googleKey: '744982401814-6tfvt0cnj6vvqnspgk9lbsl6nar3h73s.apps.googleusercontent.com',
+  facebookKey: '3542713669169089'
 };
 /*
  * For easier debugging in development mode, you can import the following file

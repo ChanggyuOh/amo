@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { LayoutComponent } from './layout/layout.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
 import { RoutingModule } from './routing/routing.module';
 import { HeaderComponent } from './navigation/header/header.component';
@@ -22,11 +22,14 @@ import {
 import { FeedModule } from './feed/feed.module';
 import { QuillModule } from 'ngx-quill';
 import { UtilsModule } from './utils/utils.module';
-import { MaterialFileUploadComponent } from './material-file-upload/material-file-upload.component';
+import { DebateModule } from './debate/debate.module';
 import { SearchDialogComponent } from './search-dialog/search-dialog.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { TvComponent } from './tv/tv.component';
 import { TvDialogComponent } from './tv/tv-dialog/tv-dialog.component';
+import { environment } from './../environments/environment';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { SharedModule } from './shared/shared.module';
 
 export function onMonacoLoad() {
  
@@ -78,10 +81,10 @@ const monacoConfig: NgxMonacoEditorConfig = {
     HomeComponent,
     HeaderComponent,
     SidenavListComponent,
-    MaterialFileUploadComponent,
     SearchDialogComponent,
     TvComponent,
     TvDialogComponent,
+    PrivacyComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +99,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
     OwnerModule,
     FeedModule,
     UtilsModule,
+    SharedModule,
+    DebateModule,
     QuillModule.forRoot(),
     MonacoEditorModule.forRoot(monacoConfig),
   ],
@@ -108,12 +113,12 @@ const monacoConfig: NgxMonacoEditorConfig = {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '865657788588-0prp7to72l38gnfh8r1g9d5okmo545rq.apps.googleusercontent.com'
+              environment.googleKey
             ),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('2497836857174911'),
+            provider: new FacebookLoginProvider(environment.facebookKey),
           },
           {
             id: AmazonLoginProvider.PROVIDER_ID,
@@ -125,6 +130,6 @@ const monacoConfig: NgxMonacoEditorConfig = {
       } as SocialAuthServiceConfig,
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

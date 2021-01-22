@@ -1,4 +1,63 @@
-<div mat-dialog-content class="container">
+<h1 mat-dialog-title>Hi {{user.name}}</h1>
+<div class="continer">
+  <label id="stepper-radio-group-label">Choose a type of your thought.</label>
+  <mat-radio-group class="stepper-radio-group" aria-label="Select an option">
+    <mat-radio-button class="stepper-radio-button" (change)="radioChange($event)" value="1">Best Person (You would like to see the best person for your thought)</mat-radio-button>
+    <mat-radio-button class="stepper-radio-button" (change)="radioChange($event)" value="2">Best Thing (You would like to know the best thing for you thought)</mat-radio-button>
+    <mat-radio-button class="stepper-radio-button" (change)="radioChange($event)" value="3">Best Option (You would like to have best option(s) for your thought)</mat-radio-button>
+  </mat-radio-group>
+</div>
+<div mat-dialog-content #bestpeople *ngIf="showBestPeople">
+    <mat-form-field>
+      <mat-icon matPrefix>face</mat-icon>
+      <mat-label>Describe what you think of</mat-label>
+        <input matInput class="feedtitle" type="text" [(ngModel)]="data.title">
+    </mat-form-field>
+    <div fxLayout="row">
+    <mat-form-field>
+        <mat-icon matPrefix>add_a_photo</mat-icon>
+        <mat-label>Image link to share</mat-label>
+        <input matInput class="feedtitle form-inline" type="text" [(ngModel)]="data.imageUrl">
+    </mat-form-field>
+    <div style="display: block; clear:both;">
+      <mat-icon matPrefix>upload_file</mat-icon>
+      <mat-label>Or upload an image:</mat-label>
+      <app-material-file-upload (complete)="onFileComplete($event)"></app-material-file-upload>
+    </div>
+    <mat-form-field>
+      <mat-icon matPrefix>ondemand_video</mat-icon>
+      <mat-label>Do you want to share a video link?</mat-label>
+      <input matInput class="feedtitle" type="text" [(ngModel)]="data.videoUrl">
+    </mat-form-field>
+
+  <label>Content:</label>
+  <quill-editor [(ngModel)]="data.details"  
+                [styles]="{height: '200px'}"
+                [modules]="editorOptions"
+                ></quill-editor>  -->
+
+  <mat-form-field class="example-chip-list">
+    <mat-chip-list #chipList aria-label="HashTag selection">
+      <mat-chip *ngFor="let hashtag of hashTags" [selectable]="selectable"
+              [removable]="removable" (removed)="remove(hashtag)">
+        {{hashtag.name}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="Add Hashtag..."
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <!-- <div mat-dialog-actions>
+
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div> -->
+</div>
+<!-- <div mat-dialog-content class="container">
     <mat-form-field>
         <mat-label>Hi {{ user.name }}, What's in your mind?</mat-label>
         <input matInput class="feedtitle" type="text" [(ngModel)]="data.title">
@@ -16,12 +75,12 @@
       <input matInput class="feedtitle" type="text" [(ngModel)]="data.videoUrl">
     </mat-form-field>
 </div>
+
 <label>Content:</label>
 <quill-editor [(ngModel)]="data.details"  
               [styles]="{height: '200px'}"
               [modules]="editorOptions"
               ></quill-editor> 
-<!-- <textarea rows="15" matInput placeholder="Your thought" [(ngModel)]="data.details"></textarea> -->
 
 <mat-form-field class="example-chip-list">
   <mat-chip-list #chipList aria-label="HashTag selection">
@@ -37,7 +96,7 @@
            (matChipInputTokenEnd)="add($event)">
   </mat-chip-list>
 </mat-form-field>
-
+ -->
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
   <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>

@@ -1,11 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MyFeedDialogData } from '../../_interface/myfeed.dialog.model';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { SocialAuthService } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
-
+import { COMMA, ENTER} from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatRadioChange } from '@angular/material/radio';
+import { environment } from '../../../environments/environment';
 export interface HashTag {
   name: string;
 }
@@ -23,6 +25,10 @@ export class MyFeedDialogComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  public showBestPeople: boolean = false;
+
   hashTags: HashTag[] = [
   ];
 
@@ -54,7 +60,8 @@ export class MyFeedDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<MyFeedDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: MyFeedDialogData,
-    private authService: SocialAuthService) {}
+    private authService: SocialAuthService,
+    private _formBuilder: FormBuilder) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -73,6 +80,13 @@ export class MyFeedDialogComponent implements OnInit {
     });
     if (this.data.hashTags)
       this.data.hashTags.split(',').forEach(name => this.hashTags.push({name}));
+
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
   public add = (event: MatChipInputEvent): void => {
     const input = event.input;
@@ -97,5 +111,31 @@ export class MyFeedDialogComponent implements OnInit {
       this.hashTags.splice(index, 1);
       this.data.hashTags = this.hashTags.map(tag => tag.name).join();
     }
+  }
+
+  public radioChange = (event: MatRadioChange) => {
+    console.log(event);
+    switch(event.value)
+    {
+      case "1":
+        this.showBestPeople = true;
+        // this.showStepper2 = true;
+        // this.showStepper3 = false;  
+        break;
+      case "2":
+        this.showBestPeople = false;
+        // this.showStepper2 = true;
+        // this.showStepper3 = false;        
+        break;
+      case "3":
+        this.showBestPeople = false;
+        // this.showStepper2 = false;
+        // this.showStepper3 = true;        
+        break;
+    }
+  }
+  public onFileComplete = (data: any) => {
+    console.log(data); // We just print out data bubbled up from event emitter.
+    this.data.imageUrl = environment.urlAddress+"/"+data.dbPath.replace("Resources\\","Resource/").replace(/\\/g,"/");
   }
 }

@@ -1,0 +1,13 @@
+.stepper-radio-group{
+    display: flex; flex-direction: column;
+  /* display: inline-grid; */ 
+  /* display: grid; */
+  margin: 20px 0;
+}
+.continer{
+    margin-top: 0px;
+}
+
+.stepper-radio-button {
+    margin: 5px;
+  }

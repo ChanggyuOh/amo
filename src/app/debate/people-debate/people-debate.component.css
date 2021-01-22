@@ -1,4 +1,35 @@
-.myfeed-form {
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+  }
+  
+  .top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+  }
+  
+  .top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+  }
+  
+  .bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+  }
+  
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .myfeed-form {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
@@ -9,7 +40,7 @@
   }
 
   .myfeed-card {
-    max-width: 400px;
+    /* max-width: 400px; */
     margin-bottom: 10px;
   }
   .container {
@@ -21,7 +52,7 @@
   mat-card img{
     object-fit: cover; /*this makes the image in src fit to the size specified below*/
     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    height: 80%;
+    height: 250px;
   }
 
   mat-card iframe{
@@ -37,6 +68,19 @@
   .example-chip .cdk-drop-list-dragging {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
-
-
   
+  .import-error {
+    color: red;
+    padding: 20px;
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+.photo {
+  height: 250px;
+  background-position: center;
+  background-repeat: repeat-x;
+  background-size: contain;
+  position: relative;
+}

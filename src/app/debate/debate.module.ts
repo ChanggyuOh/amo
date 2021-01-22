@@ -1,19 +1,14 @@
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FeedListComponent } from './feed-list/feed-list.component';
-import { FeedRoutingModule } from './feed-routing/feed-routing.module';
 import { MaterialModule } from './../material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MyFeedListComponent } from './my-feed-list/my-feed-list.component';
-import { MyFeedDialogComponent } from './my-feed-dialog/my-feed-dialog.component';
 import { QuillModule } from 'ngx-quill'
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
-import { BpmnDialogComponent } from './bpmn-dialog/bpmn-dialog.component';
-import { DiagramComponent } from './diagram/diagram.component';
-import { CarousalComponent } from './carousal/carousal.component';
 import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
-import { FeedconfigstepperComponent } from './feedconfigstepper/feedconfigstepper.component';
 import { SharedModule } from '../shared/shared.module';
+import { DebateRoutingModule } from './debate-routing.module';
+import { PeopleDebateComponent } from './people-debate/people-debate.component';
+import { PeopleDebateListComponent } from './people-debate-list/people-debate-list.component';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -37,22 +32,16 @@ export class SafePipe implements PipeTransform {
     }
   }
 } 
-
 // SwiperOptions from 'swiper' could also be used here instead of SwiperConfigInterface
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
-  // direction: 'horizontal',
-  // threshold: 50,
-  // spaceBetween: 5,
-  // slidesPerView: 1,
-  // centeredSlides: true
 };
 
 @NgModule({
-  declarations: [FeedListComponent, MyFeedListComponent, MyFeedDialogComponent, SafePipe, BpmnDialogComponent, DiagramComponent, CarousalComponent, FeedconfigstepperComponent],
+  declarations: [PeopleDebateListComponent,PeopleDebateComponent, SafePipe],
   imports: [
     CommonModule,
-    FeedRoutingModule,
+    DebateRoutingModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -67,4 +56,4 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     }
   ],
 })
-export class FeedModule { }
+export class DebateModule { }

@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TvElement, MediaLinks } from '../_interface/tv-element.model';
 import { TvService } from './../shared/tv.service';
 import { TvDialogComponent } from './tv-dialog/tv-dialog.component';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-tv',
   templateUrl: './tv.component.html',
@@ -19,9 +21,15 @@ export class TvComponent implements OnInit {
   public newsDisplayedColumns: string[] = ['index', 'medianame'];
   public newsDataSource = new MatTableDataSource<TvElement>();
   
-  constructor(private tvService: TvService, public dialog: MatDialog) { }
+  constructor(private tvService: TvService, public dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit(): void {
+    var user = localStorage.getItem('user');
+    console.log('user:'+user);
+    if (user == null) {
+      this.router.navigate(['/feed/feeds']);
+    }
     this.getChannels("drama");
     this.getChannels("entertainment");
     this.getChannels("documentary");
