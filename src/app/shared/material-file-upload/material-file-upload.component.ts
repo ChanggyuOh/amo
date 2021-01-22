@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse, HttpRequest,
 import { Subscription } from 'rxjs';
 import { of } from 'rxjs';
 import { catchError, last, map, tap } from 'rxjs/operators';
-import { environment } from './../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-material-file-upload',
@@ -51,6 +51,17 @@ export class MaterialFileUploadComponent implements OnInit {
                   this.uploadFiles();
             };
             fileUpload.click();
+      }
+      onPicClick(){
+            console.log("onPicClick called");
+            const capturedImage = document.getElementById('cameraInput') as HTMLInputElement;
+            capturedImage.click();            
+      }
+      onFileSelected(event){
+            console.log("onFileSelected called");
+            var capture = { data: event.target.files[0], state: 'in', inProgress: false, progress: 0, canRetry: false, canCancel: true };
+            console.log(capture);
+            this.uploadFile(capture);
       }
 
       cancelFile(file: FileUploadModel) {

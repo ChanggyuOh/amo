@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, ViewChild  } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, ViewChild, AfterViewInit } from '@angular/core';
 import { FeedItem } from '../../_interface/feed-item.model';
 // import Swiper core and required components
 import { SwiperComponent, SwiperDirective } from 'ngx-swiper-wrapper';
@@ -11,53 +11,61 @@ import { ScrollbarOptions } from 'swiper/types/components/scrollbar';
   templateUrl: './carousal.component.html',
   styleUrls: ['./carousal.component.css']
 })
-export class CarousalComponent implements OnInit {
+export class CarousalComponent implements OnInit, AfterViewInit {
   @Input() data: FeedItem[];
-
+  @Input() carouselId: string;
+  myId: string;
   public show: boolean = true;
-  public slides = [
-    'First slide',
-    'Second slide',
-    'Third slide',
-    'Fourth slide',
-    'Fifth slide',
-    'Sixth slide'
-  ];
+
   public type: string = 'component';
 
   public disabled: boolean = false;
+  private slidesNum: number = 10;
 
   public config: SwiperOptions = {
     a11y: { enabled: true },
-    direction: 'horizontal',
-    autoplay: {delay: 1000, stopOnLastSlide: false, reverseDirection: false, disableOnInteraction: true},
-    slidesPerView: 3,
-    //slidesPerGroup:5,
+    
+    autoplay: {
+      delay: 5000, 
+      stopOnLastSlide: false, 
+      reverseDirection: false, 
+      disableOnInteraction: true
+    },
+    breakpoints:{
+          // when window width is <= 320px
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10
+      },
+      // when window width is <= 640px
+      640: {
+        slidesPerView: 3,
+        spaceBetween: 20
+      },
+      1280: {
+        slidesPerView: 5,
+        spaceBetween: 20
+      }
+    },
     centeredSlides:false,
+    direction: 'horizontal',
     loop: true,
-    loopedSlides:10,
+    //loopedSlides:10,
+    //loopAdditionalSlides: this.slidesNum,
+    //loopedSlides: this.slidesNum,
     //loopFillGroupWithBlank: true,
     keyboard: true,
     mousewheel: true,
-    scrollbar: true,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
       disabledClass: 'swiper-button-disabled'
-      },
-      breakpoints:{
-            // when window width is <= 320px
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 10
-        },
-        // when window width is <= 640px
-        640: {
-          slidesPerView: 3,
-          spaceBetween: 20
-        }
-      },
-    pagination: true
+    },
+    pagination: true,
+    //scrollbar: true,
+    slidesPerView: 3,
+    slidesPerGroup:1,
+    watchSlidesProgress:true,
   };
 
   private scrollbar: ScrollbarOptions = {
@@ -71,14 +79,23 @@ export class CarousalComponent implements OnInit {
     clickable: true,
     hideOnClick: false
   };
+  public myCaro: any;
 
   @ViewChild(SwiperComponent, { static: false }) componentRef?: SwiperComponent;
   @ViewChild(SwiperDirective, { static: false }) directiveRef?: SwiperDirective;
 
-  constructor( ) { }
+  constructor( ) { 
+  }
 
   ngOnInit(): void {
   }
+
+  ngAfterViewInit():void{
+    this.myCaro = document.getElementById(this.carouselId);
+    console.log(this.carouselId);
+    console.log(this.myCaro);
+  }
+
   public toggleType(): void {
     this.type = (this.type === 'component') ? 'directive' : 'component';
   }
@@ -134,6 +151,8 @@ export class CarousalComponent implements OnInit {
 
   public onIndexChange(index: number): void {
     console.log('Swiper index: ', index);
+    if (index > 1)
+      this.config.autoplay = true;// this enforces to keep loop going.
   }
 
   public onSwiperEvent(event: string): void {

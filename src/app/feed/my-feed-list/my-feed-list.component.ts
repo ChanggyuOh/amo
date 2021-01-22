@@ -5,7 +5,10 @@ import { MyFeedDialogData } from '../../_interface/myfeed.dialog.model';
 import { RepositoryService } from '../../shared/repository.service';
 import { SocialUser, SocialAuthService } from 'angularx-social-login';
 import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { BpmnDialogComponent } from '../bpmn-dialog/bpmn-dialog.component'
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-feed-list',
@@ -31,20 +34,27 @@ export class MyFeedListComponent implements OnInit {
   cards: MyFeedDialogData[] = [
   ];
 
+  sub: any;
+
   constructor(public dialog: MatDialog, 
+              private router: Router,
               private repoService: RepositoryService,
               private authService: SocialAuthService) {}
   ngOnInit(): void {
     var user = localStorage.getItem('user');
+
     if (user != null)
     {
       this.user = JSON.parse(localStorage.getItem('user'));
       this.loggedIn = true;
     }
+    else{
+      this.router.navigate(['/feed/feeds']);
+    }
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
-      this.repoService.getData('feeds/1/10',this.user)
+      this.repoService.getData('users/1/10',this.user)
       .pipe(
         map(response => response),
         tap(users => console.log("users array", users))    // users array [Object, Object, Object]
@@ -52,7 +62,7 @@ export class MyFeedListComponent implements OnInit {
       .subscribe((cards:MyFeedDialogData[]) => this.cards = cards);
     });
 
-    this.repoService.getData('feeds/1/10',this.user)
+    this.repoService.getData('feeds/1/100',this.user)
     .pipe(
       map(response => response),
       tap(users => console.log("users array", users))    // users array [Object, Object, Object]
@@ -70,8 +80,8 @@ export class MyFeedListComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(MyFeedDialogComponent, {
-      width: '800px',
-      height: '640px',
+      width: '1800px',
+      height: '840px',
       data: this.data
     });
 
@@ -81,28 +91,33 @@ export class MyFeedListComponent implements OnInit {
       if (result != null)
       {
         //console.log(result);
-        this.saveFeed(result);
+        var savedData = this.saveFeed(result);
 
-        this.data = {
-          id: 0,
-          ownerId: 0,
-          title: '',
-          details: '',
-          imageUrl:'',
-          videoUrl:'',
-          hashTags:''
-        };
+        savedData.subscribe((res:MyFeedDialogData) => {
+          this.cards.splice(0,0,res);
+          this.data = {
+            id: 0,
+            ownerId: 0,
+            title: '',
+            details: '',
+            imageUrl:'',
+            videoUrl:'',
+            hashTags:''
+          };
+          this.router.navigate(['/debate/people-debate',res.id]);
+        })    
       }
     });
   }
 
-  private saveFeed = (feed: MyFeedDialogData) => {
+  private saveFeed = (feed: MyFeedDialogData): Observable<Object> => {
     if (feed.videoUrl)
       feed.videoUrl = feed.videoUrl.replace("/watch?v=","/embed/");
 
-    this.repoService.create('feeds', feed, this.user)
-    .subscribe((res:MyFeedDialogData) => {
-      this.cards.splice(0,0,res);
-    })
+    return this.repoService.create('feeds', feed, this.user);
+  }
+
+  public goToPeopleDebatePage = (id: number) => {
+    this.router.navigate(['/debate/people-debate',id]);
   }
 }
