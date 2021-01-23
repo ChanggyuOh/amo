@@ -30,6 +30,8 @@ import { TvDialogComponent } from './tv/tv-dialog/tv-dialog.component';
 import { environment } from './../environments/environment';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { SharedModule } from './shared/shared.module';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 export function onMonacoLoad() {
  
@@ -103,6 +105,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
     DebateModule,
     QuillModule.forRoot(),
     MonacoEditorModule.forRoot(monacoConfig),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   providers: [
     {

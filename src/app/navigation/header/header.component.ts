@@ -6,6 +6,7 @@ import { UserService } from "../../shared/user.service";
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SearchDialogComponent } from '../../search-dialog/search-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,8 @@ export class HeaderComponent implements OnInit {
   constructor(public dialog: MatDialog,
               private authService: SocialAuthService,
               private userService: UserService,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     var user = localStorage.getItem('user');
@@ -90,7 +92,12 @@ export class HeaderComponent implements OnInit {
         }
       }
     );
+  }
 
+  signInWithAmazon(): void {
+    this.snackBar.open("Amazon OAuth is coming soon. Use google or facebook OAuth",null,{
+      duration:2000,
+    });
   }
 
   signOut(): void {

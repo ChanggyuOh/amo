@@ -1,36 +1,57 @@
 <mat-toolbar color="primary">
-    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-        <li>
-            <a mat-button (click)="onToggleSidenav()">
-                <mat-icon>menu</mat-icon>
-                <span>menu</span>
-            </a>
-        </li>
-        <li>
-            <a mat-button routerLink="/home">
-                <mat-icon>account_box</mat-icon>
-                <span>home</span>
-            </a>
-        </li>
-        <li>
-            <a mat-button routerLink="/feed/my-feed">
-                <mat-icon>dashboard</mat-icon>
-                <span>my feed</span>
-            </a>
-        </li>
-        <li>
-            <a mat-button routerLink="/debate/people-debate-list">
-                <mat-icon>groups</mat-icon>
-                <span>people debate</span>
-            </a>
-        </li>
-        <li>
-            <a mat-button routerLink="/tv">
-                <mat-icon>tv</mat-icon>
-                <span>TV</span>
-            </a>
-        </li>
-    </ul>
+    <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+            <li>
+                <a mat-button routerLink="/home">
+                    <mat-icon>account_box</mat-icon>
+                    <span>home</span>
+                </a>
+            </li>
+            <li>
+                <a mat-button routerLink="/feed/my-feed" *ngIf="loggedIn">
+                    <mat-icon>dashboard</mat-icon>
+                    <span>my feed</span>
+                </a>
+            </li>
+            <li>
+                <button mat-button [matMenuTriggerFor]="debateMenu">
+                    <mat-icon>emoji_events</mat-icon>
+                    <span>Debate</span>
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+                <mat-menu #debateMenu="matMenu">
+                    <button mat-menu-item routerLink="/debate/people-debate-list">
+                        <mat-icon>groups</mat-icon>
+                        people debate
+                    </button>
+                </mat-menu>
+            </li>
+            <li>
+                <button mat-button [matMenuTriggerFor]="utilMenu">
+                    <mat-icon>build_circle</mat-icon>
+                    <span>Utils</span>
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+                <mat-menu #utilMenu="matMenu">
+                    <button mat-menu-item routerLink="/tv">
+                        <mat-icon>tv</mat-icon><span>TV</span>
+                    </button>
+                    <button mat-menu-item routerLink="/utils/flowy">
+                        <mat-icon>account_tree</mat-icon><span>Flowy</span>
+                    </button>
+                    <button mat-menu-item routerLink="/utils/qr-gen">
+                        <mat-icon>qr_code_2</mat-icon><span>QR-Code</span>
+                    </button>        
+                    <button mat-menu-item routerLink="/utils/my-file-explorer">
+                        <mat-icon>folder</mat-icon><span>File Explorer</span>
+                    </button>        
+                    <button mat-menu-item routerLink="/utils/editor">
+                        <mat-icon>web_asset</mat-icon><span>Editor</span>
+                    </button>        
+                </mat-menu>
+            </li>
+        </ul>
+    </div>
     <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
             <!-- <li>
@@ -39,22 +60,36 @@
                     <span>Register</span>
                 </a>
             </li> -->
-            <li><span class="login-label-center" *ngIf="!loggedIn">Login:</span></li>
             <li>
-                
-                <a mat-button (click)="signInWithGoogle()" *ngIf="!loggedIn" class="btn btn-social-icon btn-amazon mx-1">
-                    <span class="fa fa-google"></span>
-                </a>
-                <a mat-button (click)="signInWithFB()" *ngIf="!loggedIn" class="btn btn-social-icon btn-amazon mx-1">
-                    <span class="fa fa-facebook"></span>
-                </a>
-                <a mat-button (click)="onLogin()" *ngIf="!loggedIn" class="btn btn-social-icon btn-amazon mx-1">
-                    <span class="fa fa-amazon"></span>
-                </a>
-                <a mat-button (click)="signOut()" *ngIf="loggedIn">
-                    <mat-icon>exit_to_app</mat-icon>
-                    <span>Logout</span>
-                </a>
+                <button mat-button [matMenuTriggerFor]="loginMenu" *ngIf="!loggedIn">
+                    Logins
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+                <mat-menu #loginMenu="matMenu">
+                    <button mat-menu-item (click)="signInWithGoogle()" >
+                        <span class="fa fa-google">: Google</span>
+                    </button>
+                    <button mat-menu-item (click)="signInWithFB()">
+                        <span class="fa fa-facebook">: Facebook</span>
+                    </button>
+                    <button mat-menu-item (click)="signInWithAmazon()">
+                        <span class="fa fa-amazon">: Amazon</span>
+                    </button>
+                </mat-menu>
+            </li>
+            
+            <li>
+                <button mat-button [matMenuTriggerFor]="userMenu" *ngIf="loggedIn">
+                    <mat-icon>settings</mat-icon>
+                    <span>Settings</span>
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+                <mat-menu #userMenu="matMenu">
+                    <button mat-menu-item (click)="signOut()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
             </li>
             <li>
                 <!-- Search button (initiates search) -->
@@ -63,5 +98,11 @@
                 </a>
             </li>
         </ul>
+    </div>
+    <div fxFlex fxLayout fxHide.gt-xs fxLayoutAlign="end">
+        <a mat-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+            <span>menu</span>
+        </a>
     </div>
   </mat-toolbar>
