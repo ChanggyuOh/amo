@@ -32,7 +32,6 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { SharedModule } from './shared/shared.module';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-
 export function onMonacoLoad() {
  
   console.log((window as any).monaco);

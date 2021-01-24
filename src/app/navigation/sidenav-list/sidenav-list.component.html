@@ -2,24 +2,33 @@
     <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
         <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
     </a>
-    <button mat-button [matMenuTriggerFor]="debateMenu" (click)="onSidenavClose()">
+    <button mat-button [matMenuTriggerFor]="feedMenu">
+        <mat-icon>view_carousel</mat-icon>
+        <span>Feed</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #feedMenu="matMenu">
+        <button mat-menu-item routerLink="/feed/feeds" (click)="onSidenavClose()">
+            <mat-icon>view_array</mat-icon>
+            public feeds
+        </button>
+        <button mat-menu-item routerLink="/feed/my-feed" *ngIf="loggedIn" (click)="onSidenavClose()">
+            <mat-icon>view_day</mat-icon>
+            my feed
+        </button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="debateMenu">
         <mat-icon>emoji_events</mat-icon>
         <span>Debate</span>
         <mat-icon>arrow_drop_down</mat-icon>
     </button>
     <mat-menu #debateMenu="matMenu">
-        <button mat-menu-item routerLink="/debate/people-debate-list">
+        <button mat-menu-item routerLink="/debate/people-debate-list" (click)="onSidenavClose()">
             <mat-icon>groups</mat-icon>
             people debate
         </button>
     </mat-menu>
-    <a mat-list-item routerLink="/tv" (click)="onSidenavClose()">
-        <mat-icon>tv</mat-icon> <span class="nav-caption">TV</span>   
-    </a>
-    <a mat-list-item routerLink="#" (click)="onSidenavClose()">
-        <mat-icon>groups</mat-icon><span class="nav-caption">People Debate List</span>
-    </a>
-        <button mat-button [matMenuTriggerFor]="utilMenu">
+    <button mat-button [matMenuTriggerFor]="utilMenu">
         <mat-icon>build_circle</mat-icon>
         <span>Utils</span>
         <mat-icon>arrow_drop_down</mat-icon>

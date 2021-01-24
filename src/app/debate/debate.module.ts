@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DebateRoutingModule } from './debate-routing.module';
 import { PeopleDebateComponent } from './people-debate/people-debate.component';
 import { PeopleDebateListComponent } from './people-debate-list/people-debate-list.component';
+import { CandidateDialogComponent } from './candidate-dialog/candidate-dialog.component';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -38,7 +39,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 @NgModule({
-  declarations: [PeopleDebateListComponent,PeopleDebateComponent, SafePipe],
+  declarations: [PeopleDebateListComponent,PeopleDebateComponent, SafePipe, CandidateDialogComponent],
   imports: [
     CommonModule,
     DebateRoutingModule,

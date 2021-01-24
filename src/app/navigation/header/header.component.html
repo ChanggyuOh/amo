@@ -7,11 +7,26 @@
                     <span>home</span>
                 </a>
             </li>
+        </ul>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="start">
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
             <li>
-                <a mat-button routerLink="/feed/my-feed" *ngIf="loggedIn">
-                    <mat-icon>dashboard</mat-icon>
-                    <span>my feed</span>
-                </a>
+                <button mat-button [matMenuTriggerFor]="feedMenu">
+                    <mat-icon>view_carousel</mat-icon>
+                    <span>Feed</span>
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+                <mat-menu #feedMenu="matMenu">
+                    <button mat-menu-item routerLink="/feed/feeds">
+                        <mat-icon>view_array</mat-icon>
+                        public feeds
+                    </button>
+                    <button mat-menu-item routerLink="/feed/my-feed" *ngIf="loggedIn">
+                        <mat-icon>view_day</mat-icon>
+                        my feed
+                    </button>
+                </mat-menu>
             </li>
             <li>
                 <button mat-button [matMenuTriggerFor]="debateMenu">
@@ -26,7 +41,10 @@
                     </button>
                 </mat-menu>
             </li>
-            <li>
+
+        </ul>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items" fxHide.xs>
+                        <li>
                 <button mat-button [matMenuTriggerFor]="utilMenu">
                     <mat-icon>build_circle</mat-icon>
                     <span>Utils</span>
