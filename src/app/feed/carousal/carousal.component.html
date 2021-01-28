@@ -1,0 +1,56 @@
+<div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+	<swiper 
+		class="swiper-container" 
+		fxFlex="auto" 
+		[attr.id]='carouselId'	
+		[config]="config" 
+		[disabled]="disabled"
+		(indexChange)="onIndexChange($event)" 
+		(swiperTransitionStart)="onSwiperEvent('transitionStart')" 
+		(swiperTransitionEnd)="onSwiperEvent('transitionEnd')">
+
+	<div *ngFor="let card of data" class="swiper-slide">
+		<div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+			<mat-card class="myfeed-card">
+				<mat-card-header>
+				  <mat-card-title>
+					  <h4>{{card.title}}</h4>
+				  </mat-card-title>
+				  
+				  <mat-card-subtitle>
+					<p [innerHtml]="card.details | safe:'html'"></p>
+				  </mat-card-subtitle>
+				</mat-card-header>
+				<img mat-card-imgage *ngIf="card.imageUrl && !card.videoUrl" [src]="card.imageUrl | safe:'url'">
+				<mat-card-content>
+				  <iframe *ngIf="card.videoUrl" 
+					[src]="card.videoUrl | safe:'resourceUrl'" 
+					frameborder="0" 
+					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				  
+					<mat-chip-list
+					class="example-chip"
+					cdkDropList 
+					*ngIf="card.hashTags"
+					cdkDropListOrientation="horizontal"
+					(cdkDropListDropped)="drop($event)">
+					<mat-chip
+					  class="example-box"
+					  cdkDrag
+					  *ngFor="let hashTag of card.hashTags.split(',')">
+					  {{hashTag}}
+					</mat-chip>
+				  </mat-chip-list>
+				</mat-card-content>
+				<mat-card-actions>
+					<a mat-button>LIKE</a>
+					<a mat-button>SHARE</a>
+				</mat-card-actions>
+			  </mat-card>
+
+		</div>
+	</div>
+	</swiper>
+</div>
+
+  
