@@ -1,16 +1,16 @@
 <app-layout>
-  <mat-sidenav-container>
+  <mat-sidenav-container fxLayout="column" fxFlexFill>
     <mat-sidenav #sidenav role="navigation">
       <!--this is a place for us to add side-nav code-->
       <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content fxLayout="column">
       <!--in here all the content must reside. We will add a navigation header as well-->
-      <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-      <main>
-        <router-outlet></router-outlet>
-      </main>
-        <app-footer></app-footer>
+        <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+        <main>
+          <router-outlet></router-outlet>
+        </main>
+        <app-footer fxFlexOffset="auto"></app-footer>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </app-layout>

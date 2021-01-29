@@ -8,6 +8,7 @@ import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CandidateDialogComponent } from '../candidate-dialog/candidate-dialog.component';
+import { DynamicFormDialogComponent} from '../../utils/dynamic-form-dialog/dynamic-form-dialog.component';
 @Component({
   selector: 'app-people-debate',
   templateUrl: './people-debate.component.html',
@@ -51,10 +52,10 @@ export class PeopleDebateComponent implements OnInit {
     });
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(CandidateDialogComponent, {
+    const dialogRef = this.dialog.open(DynamicFormDialogComponent, {
       width: '1800px',
       height: '840px',
-      data: this.data
+      data: 1 //<-- formId
     });
   }
 }
