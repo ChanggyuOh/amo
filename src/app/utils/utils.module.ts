@@ -13,6 +13,8 @@ import { MyFileExplorerComponent } from './my-file-explorer/my-file-explorer.com
 import { MyEditorComponent } from './my-editor/my-editor.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { MyDynamicFormComponent } from './my-dynamic-form/my-dynamic-form.component';
+import { MatFormioModule } from '@formio/angular-material';
+import { DynamicFormDialogComponent } from './dynamic-form-dialog/dynamic-form-dialog.component';
 export function onMonacoLoad() {
  
   console.log((window as any).monaco);
@@ -57,13 +59,14 @@ const monacoConfig: NgxMonacoEditorConfig = {
 };
 
 @NgModule({
-  declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent],
+  declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent],
   imports: [
     CommonModule,
     UtilsRoutingModule,
     NgxQRCodeModule,
     MaterialModule,
     FormsModule,
+    MatFormioModule,
     ReactiveFormsModule,
     MonacoEditorModule.forRoot(monacoConfig),
   ]

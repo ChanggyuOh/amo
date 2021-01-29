@@ -1,51 +1,38 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder,Validators,FormArray } from '@angular/forms';
+import { FormioRefreshValue } from '@formio/angular';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-my-dynamic-form',
   templateUrl: './my-dynamic-form.component.html',
   styleUrls: ['./my-dynamic-form.component.css']
 })
-export class MyDynamicFormComponent implements OnInit {
-  profileForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: [''],
-    address: this.fb.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: ['']
-    }),
-    aliases: this.fb.array([
-      this.fb.control('')
-    ])
-  });
-
-  ngOnInit(){
-    
+export class MyDynamicFormComponent implements OnInit, AfterViewInit {
+  @ViewChild('json', {static: true}) jsonElement?: ElementRef;
+  @ViewChild('code', {static: true}) codeElement?: ElementRef;
+  public form: Object;
+  public refreshForm: EventEmitter<FormioRefreshValue> = new EventEmitter();
+  constructor() {
+    this.form = {components: []};
   }
-
-  get aliases() {
-    return this.profileForm.get('aliases') as FormArray;
+  ngOnInit(): void {
   }
-
-  constructor(private fb: FormBuilder) { }
-
-  updateProfile() {
-    this.profileForm.patchValue({
-      firstName: 'Nancy',
-      address: {
-        street: '123 Drew Street'
-      }
+  onSubmit(event){
+    console.log(event.data);
+  }
+  onChange(event) {
+    this.jsonElement.nativeElement.innerHTML = '';
+    this.jsonElement.nativeElement.appendChild(document.createTextNode(JSON.stringify(event.form, null, 4)));
+    this.refreshForm.emit({
+      property: 'form',
+      value: event.form
     });
   }
 
-  addAlias() {
-    this.aliases.push(this.fb.control(''));
+  onJsonSubmit(){
+    console.log("json:"+this.jsonElement.nativeElement.innerHTML);
   }
 
-  onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
+  ngAfterViewInit() {
+    
   }
 }
