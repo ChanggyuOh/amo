@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CandidateDialogComponent } from '../candidate-dialog/candidate-dialog.component';
 import { DynamicFormDialogComponent} from '../../utils/dynamic-form-dialog/dynamic-form-dialog.component';
+import { environment} from '../../../environments/environment'
+import { env } from 'process';
 @Component({
   selector: 'app-people-debate',
   templateUrl: './people-debate.component.html',
@@ -27,35 +29,48 @@ export class PeopleDebateComponent implements OnInit {
     private repoService:RepositoryService,
     private authService: SocialAuthService,
     public dialog: MatDialog
-    ) { }
+    ) {
+      var user = localStorage.getItem('user');
+
+      if (user != null)
+      {
+        this.user = JSON.parse(localStorage.getItem('user'));
+        this.loggedIn = true;
+      }
+      this.authService.authState.subscribe((user) => {
+        this.user = user;
+        this.loggedIn = (user != null);
+      });
+  
+      this.sub = this.activatedroute.paramMap.subscribe(params => {
+        this.id =parseInt(params.get('id'));
+        if (this.id > 0 && this.user != null)
+        {
+          this.repoService.getData('debate/people/'+this.id,this.user)
+          .subscribe((res:any) => {
+            this.peopleDebateItem = res;
+            console.log("peopleDebateDate:"+res.title);
+          });
+        }
+      });
+     }
 
   ngOnInit(): void {
-    var user = localStorage.getItem('user');
-
-    if (user != null)
-    {
-      this.user = JSON.parse(localStorage.getItem('user'));
-      this.loggedIn = true;
-    }
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-    });
-
-    this.sub = this.activatedroute.paramMap.subscribe(params => {
-      this.id =parseInt(params.get('id'));
-      if (this.id > 0 && this.user != null)
-      {
-        this.repoService.getData('debate/people/'+this.id,this.user)
-        .subscribe((res:PeopleDebateItem) => this.peopleDebateItem = res);
-      }
-    });
+   
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(DynamicFormDialogComponent, {
       width: '1800px',
       height: '840px',
-      data: 1 //<-- formId
+      data: environment.peopleDebateFormId
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      //console.log('The dialog was closed');
+      
+      if (result != null)
+      {
+        console.log(result);
+      }
     });
   }
 }

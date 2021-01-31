@@ -1,7 +1,7 @@
 <mat-card class="myfeed-card">
     <mat-card-header>
       <mat-card-title>
-          <h4>{{peopleDebateItem.title}}</h4>
+          <p [innerHtml]="peopleDebateItem.title|safe:'html'"></p>
       </mat-card-title>
       
       <mat-card-subtitle>

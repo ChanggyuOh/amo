@@ -14,9 +14,14 @@ import { MyEditorComponent } from './my-editor/my-editor.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { MyDynamicFormComponent } from './my-dynamic-form/my-dynamic-form.component';
 import { MatFormioModule } from '@formio/angular-material';
+import { Formio, FormioModule, FormioAppConfig } from '@formio/angular';
 import { DynamicFormDialogComponent } from './dynamic-form-dialog/dynamic-form-dialog.component';
+import { AppConfig } from '../config';
+
+// Make sure we use fontawesome everywhere in Form.io renderers.
+(Formio as any).icons = 'fontawesome';
+
 export function onMonacoLoad() {
- 
   console.log((window as any).monaco);
   let monaco = (<any>window).monaco;
   const uri = monaco.Uri.parse('a://b/foo.json');
@@ -67,8 +72,12 @@ const monacoConfig: NgxMonacoEditorConfig = {
     MaterialModule,
     FormsModule,
     MatFormioModule,
+    FormioModule,
     ReactiveFormsModule,
     MonacoEditorModule.forRoot(monacoConfig),
+  ],
+  providers:[
+    {provide: FormioAppConfig, useValue: AppConfig},
   ]
 })
 export class UtilsModule { }
