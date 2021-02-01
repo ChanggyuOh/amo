@@ -6,12 +6,14 @@ import { MyFlowyComponent } from '../my-flowy/my-flowy.component';
 import { MyFileExplorerComponent } from '../my-file-explorer/my-file-explorer.component';
 import { MyEditorComponent } from '../my-editor/my-editor.component';
 import { MyDynamicFormComponent } from '../my-dynamic-form/my-dynamic-form.component';
+import { BlocklyComponent } from '../blockly/blockly.component'
 const routes: Routes = [
   { path: 'qr-gen', component: QrGenComponent },
   { path: 'flowy', component: MyFlowyComponent },
   { path: 'my-file-explorer', component: MyFileExplorerComponent },
   { path: 'editor', component: MyEditorComponent },
   { path: 'form-builder', component: MyDynamicFormComponent },
+  { path: 'blockly', component: BlocklyComponent},
 ];
 
 @NgModule({

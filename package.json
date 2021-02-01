@@ -37,6 +37,7 @@
     "formiojs": "^4.12.6",
     "hammerjs": "^2.0.8",
     "monaco-editor": "^0.21.3",
+    "ngx-blockly": "^10.0.14",
     "ngx-monaco-editor": "^10.0.0-beta.1",
     "ngx-quill": "^13.0.1",
     "ngx-swiper-wrapper": "^10.0.0",
