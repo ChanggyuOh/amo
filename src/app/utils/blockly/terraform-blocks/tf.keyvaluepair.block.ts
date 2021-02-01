@@ -44,6 +44,7 @@ export class TfKeyValuePairBlock extends CustomBlock {
     }
 
     toJavaScriptCode(block: CustomBlock): string | any[] {
+       // console.log("key:"+key + " value:"+val);
         return 'Not implemented';
     }
 

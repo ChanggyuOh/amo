@@ -7,11 +7,11 @@ import { Category,Separator,
   LOGIC_CATEGORY, LOOP_CATEGORY, MATH_CATEGORY,TEXT_CATEGORY, LISTS_CATEGORY,COLOUR_CATEGORY,VARIABLES_CATEGORY,FUNCTIONS_CATEGORY,
   NgxToolboxBuilderService, NgxBlocklyComponent, NgxBlocklyConfig, NgxBlocklyGeneratorConfig, CustomBlock } from 'ngx-blockly';
 import { TestBlock } from './custom-blocks/test.block';
-import { TfVmpProviderBlock } from './terraform-blocks/tf.vmp.provider.block';
+import { TfProviderBlock } from './terraform-blocks/tf.provider.block';
 import { TfDataBlock } from './terraform-blocks/tf.data.block';
 import { TfResourceBlock } from './terraform-blocks/tf.resource.block';
 import { TfKeyValuePairBlock } from './terraform-blocks/tf.keyvaluepair.block';
-import { TfListCreateWithEmptyBlock } from './terraform-blocks/tf.list.create.empty.block';
+import { TfListCreateWithEmptyBlock } from './terraform-blocks/tf.list.block';
 declare var Blockly: any;
 
 @Component({
@@ -47,7 +47,7 @@ public generatorConfig: NgxBlocklyGeneratorConfig = {
 
 public customBlocks: CustomBlock[] = [
   //new TestBlock('test', null, null),
-  new TfVmpProviderBlock('vmp_provider', null, null),
+  new TfProviderBlock('provider', null, null),
   new TfDataBlock('data',null,null),
   new TfResourceBlock('resource',null,null),
   new TfKeyValuePairBlock('keyvaluepair',null,null),
@@ -75,7 +75,7 @@ public customBlocks: CustomBlock[] = [
   ngOnInit(): void {
   }
 
-  onCode = (code: string) => {
+  onCode = (code: any) => {
     console.log(code);
   }
 

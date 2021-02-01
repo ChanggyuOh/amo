@@ -1,18 +1,19 @@
-import { BlockMutator, CustomBlock } from 'ngx-blockly';
+import { BlockMutator, CustomBlock, Block } from 'ngx-blockly';
+import { BlocklyComponent } from '../blockly.component';
 
 declare var Blockly: any;
 
-export class TfVmpProviderBlock extends CustomBlock {
+export class TfProviderBlock extends CustomBlock {
 
     constructor(type: string, block: any, blockMutator: BlockMutator, ...args: any[]) {
         super(type, block, blockMutator, ...args);
-        this.class = TfVmpProviderBlock;
+        this.class = TfProviderBlock;
     }
 
     public defineBlock() {
         this.block.jsonInit({
-            "type": "vmp_provider",
-            "message0": "vmp_provider %1 resources&data %2",
+            "type": "provider",
+            "message0": "provider %1 resources&data %2",
             "args0": [
               {
                 "type": "input_dummy"
@@ -31,7 +32,7 @@ export class TfVmpProviderBlock extends CustomBlock {
     }
 
     toXML() {
-        return '<block type="vmp_provider"></block>';
+        return '<block type="provider"></block>';
     }
 
     toDartCode(block: CustomBlock): string | any[] {
@@ -39,10 +40,16 @@ export class TfVmpProviderBlock extends CustomBlock {
     }
 
     toJavaScriptCode(block: CustomBlock): string | any[] {
-        return 'Not implemented';
+        var b:Block = block;
+        
+        let me = "{ 'type': 'PROVIDER' }";
+        return me;
     }
 
+
+
     toLuaCode(block: CustomBlock): string | any[] {
+        var b: Block = block;
         return 'Not implemented';
     }
 
@@ -54,8 +61,7 @@ export class TfVmpProviderBlock extends CustomBlock {
         return 'Not implemented';
     }
 
-
     onChange(changeEvent: any) {
-        console.log(changeEvent);
+        //console.log(changeEvent);
     }
 }

@@ -30,6 +30,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@techiediaries/ngx-qrcode": "^9.1.0",
+    "angular-split": "^5.0.0",
     "angularx-social-login": "^3.5.4",
     "bpmn-js": "^8.1.0",
     "bpmn-viewer": "^1.0.6",

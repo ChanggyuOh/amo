@@ -57,6 +57,6 @@ export class TfResourceBlock extends CustomBlock {
 
 
     onChange(changeEvent: any) {
-        console.log(changeEvent);
+        //console.log(changeEvent);
     }
 }

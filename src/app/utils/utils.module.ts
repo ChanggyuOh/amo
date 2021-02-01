@@ -20,6 +20,7 @@ import { AppConfig } from '../config';
 import { BlocklyComponent } from './blockly/blockly.component';
 import { NgxBlocklyModule } from 'ngx-blockly';
 import { EditorDialogComponent } from './my-editor/editor-dialog/editor-dialog.component';
+import { AngularSplitModule } from 'angular-split';
 // Make sure we use fontawesome everywhere in Form.io renderers.
 (Formio as any).icons = 'fontawesome';
 
@@ -70,6 +71,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
   imports: [
     CommonModule,
     UtilsRoutingModule,
+    AngularSplitModule,
     NgxQRCodeModule,
     MaterialModule,
     FormsModule,
