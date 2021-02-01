@@ -1,0 +1,9 @@
+<ngx-blockly 
+    [config]="config" 
+    [customBlocks]="customBlocks"
+    [generatorConfig]="generatorConfig"  
+    (javascriptCode)="onCode($event)"
+    (workspaceChange)="onWorkspaceChange($event)"
+    (toolboxChange)="onToolboxChange($event)"></ngx-blockly>
+
+    
