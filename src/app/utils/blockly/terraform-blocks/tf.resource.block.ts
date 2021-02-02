@@ -11,28 +11,37 @@ export class TfResourceBlock extends CustomBlock {
 
     public defineBlock() {
         this.block.jsonInit({
-            "type": "resource",
-            "message0": "resource %1 list of config %2",
+            "type": "tf_resource",
+            "message0": "resouce %1 resource type %2 name %3 configs:array of key value pair block(s) %4",
             "args0": [
               {
                 "type": "input_dummy"
               },
               {
                 "type": "input_value",
-                "name": "NAME",
+                "name": "resourcetype",
+                "check": "String"
+              },
+              {
+                "type": "input_value",
+                "name": "name",
+                "check": "String"
+              },
+              {
+                "type": "input_value",
+                "name": "configs",
                 "check": "Array"
               }
             ],
-            "inputsInline": false,
             "output": null,
-            "colour": 210,
+            "colour": 225,
             "tooltip": "",
             "helpUrl": ""
           });
     }
 
     toXML() {
-        return '<block type="resource"></block>';
+        return '<block type="tf_resource"></block>';
     }
 
     toDartCode(block: CustomBlock): string | any[] {

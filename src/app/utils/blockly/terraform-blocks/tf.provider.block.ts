@@ -12,27 +12,32 @@ export class TfProviderBlock extends CustomBlock {
 
     public defineBlock() {
         this.block.jsonInit({
-            "type": "provider",
-            "message0": "provider %1 resources&data %2",
+            "type": "tf_provider",
+            "message0": "provider %1 name:string %2 configs: array of key value pairs %3",
             "args0": [
               {
                 "type": "input_dummy"
               },
               {
                 "type": "input_value",
-                "name": "NAME",
+                "name": "name:string",
+                "check": "String"
+              },
+              {
+                "type": "input_value",
+                "name": "keyvaluepairs:array of keyvaluepair block(s)",
                 "check": "Array"
               }
             ],
-            "inputsInline": false,
-            "colour": 255,
+            "output": null,
+            "colour": 90,
             "tooltip": "",
             "helpUrl": ""
           });
     }
 
     toXML() {
-        return '<block type="provider"></block>';
+        return '<block type="tf_provider"></block>';
     }
 
     toDartCode(block: CustomBlock): string | any[] {
@@ -40,10 +45,8 @@ export class TfProviderBlock extends CustomBlock {
     }
 
     toJavaScriptCode(block: CustomBlock): string | any[] {
-        var b:Block = block;
-        
-        let me = "{ 'type': 'PROVIDER' }";
-        return me;
+        console.log(block);
+        return "";
     }
 
 
