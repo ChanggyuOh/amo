@@ -26,12 +26,12 @@ export class TfVariableBlock extends CustomBlock {
               {
                 "type": "input_value",
                 "name": "variabletype",
-                "check": "variabletype"
+                "check": "tf_keyvalue_paired_obj"
               },
               {
                 "type": "input_value",
                 "name": "defaultvalues",
-                "check": "defaultvalues"
+                "check": "tf_keyvalue_paired_obj"
               }
             ],
             "output": null,
@@ -50,8 +50,7 @@ export class TfVariableBlock extends CustomBlock {
     }
 
     toJavaScriptCode(block: CustomBlock): string | any[] {
-        console.log(block);
-        return "";
+        return 'Not implemented';
     }
 
 

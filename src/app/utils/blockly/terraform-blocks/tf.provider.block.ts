@@ -20,7 +20,7 @@ export class TfProviderBlock extends CustomBlock {
               },
               {
                 "type": "input_value",
-                "name": "name:string",
+                "name": "name",
                 "check": "String"
               },
               {
@@ -45,8 +45,7 @@ export class TfProviderBlock extends CustomBlock {
     }
 
     toJavaScriptCode(block: CustomBlock): string | any[] {
-        console.log(block);
-        return "";
+        return 'Not implemented';
     }
 
 

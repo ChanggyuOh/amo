@@ -1,4 +1,6 @@
 import { BlockMutator, CustomBlock } from 'ngx-blockly';
+import { config } from 'rxjs';
+import { BlocklyComponent } from '../blockly.component';
 
 declare var Blockly: any;
 
