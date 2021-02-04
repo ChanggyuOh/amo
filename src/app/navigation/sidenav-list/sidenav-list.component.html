@@ -55,6 +55,9 @@
         <button mat-menu-item routerLink="/utils/blockly" (click)="onSidenavClose()">
             <mat-icon>all_inbox</mat-icon><span>Blockly</span>
         </button>  
+        <button mat-menu-item routerLink="/shader" (click)="onSidenavClose()">
+            <mat-icon>format_paint</mat-icon><span>Shader</span>
+        </button>  
     </mat-menu>
     <button mat-button [matMenuTriggerFor]="loginMenu" *ngIf="!loggedIn">
         Logins

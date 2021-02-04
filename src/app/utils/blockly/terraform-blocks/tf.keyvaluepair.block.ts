@@ -11,8 +11,8 @@ export class TfKeyValuePairBlock extends CustomBlock {
 
     public defineBlock() {
         this.block.jsonInit({
-            "type": "keyvaluepair",
-            "message0": "key value pair %1 key %2 value %3",
+            "type": "tf_keyvaluepair",
+            "message0": "key value pair %1 key:string %2 value:any %3",
             "args0": [
               {
                 "type": "input_dummy"
@@ -36,7 +36,7 @@ export class TfKeyValuePairBlock extends CustomBlock {
     }
 
     toXML() {
-        return '<block type="keyvaluepair"></block>';
+        return '<block type="tf_keyvaluepair"></block>';
     }
 
     toDartCode(block: CustomBlock): string | any[] {
@@ -44,7 +44,6 @@ export class TfKeyValuePairBlock extends CustomBlock {
     }
 
     toJavaScriptCode(block: CustomBlock): string | any[] {
-       // console.log("key:"+key + " value:"+val);
         return 'Not implemented';
     }
 
@@ -62,6 +61,6 @@ export class TfKeyValuePairBlock extends CustomBlock {
 
 
     onChange(changeEvent: any) {
-        console.log(changeEvent);
+       //console.log(changeEvent);
     }
 }

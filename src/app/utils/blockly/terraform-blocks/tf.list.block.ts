@@ -128,6 +128,6 @@ export class TfListCreateWithEmptyBlock extends CustomBlock {
 
 
     onChange(changeEvent: any) {
-        console.log(changeEvent);
+        //console.log(changeEvent);
     }
 }

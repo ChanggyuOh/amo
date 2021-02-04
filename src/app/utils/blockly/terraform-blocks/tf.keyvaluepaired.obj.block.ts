@@ -1,49 +1,37 @@
 import { BlockMutator, CustomBlock } from 'ngx-blockly';
-import { config } from 'rxjs';
-import { BlocklyComponent } from '../blockly.component';
 
 declare var Blockly: any;
 
-export class TfDataBlock extends CustomBlock {
+export class TfKeyValuePairedObjBlock extends CustomBlock {
 
     constructor(type: string, block: any, blockMutator: BlockMutator, ...args: any[]) {
         super(type, block, blockMutator, ...args);
-        this.class = TfDataBlock;
+        this.class = TfKeyValuePairedObjBlock;
     }
 
     public defineBlock() {
         this.block.jsonInit({
-            "type": "tf_data",
-            "message0": "data %1 data type %2 name %3 configs:array of key value pair block(s) %4",
+            "type": "tf_keyvalue_paired_obj",
+            "message0": "key value paired object %1 key value pairs %2",
             "args0": [
               {
                 "type": "input_dummy"
               },
               {
                 "type": "input_value",
-                "name": "datatype",
-                "check": "String"
-              },
-              {
-                "type": "input_value",
-                "name": "name",
-                "check": "String"
-              },
-              {
-                "type": "input_value",
-                "name": "configs",
+                "name": "NAME",
                 "check": "Array"
               }
             ],
             "output": null,
-            "colour": 270,
+            "colour": 180,
             "tooltip": "",
             "helpUrl": ""
           });
     }
 
     toXML() {
-        return '<block type="tf_data"></block>';
+        return '<block type="tf_keyvalue_paired_obj"></block>';
     }
 
     toDartCode(block: CustomBlock): string | any[] {
@@ -51,6 +39,7 @@ export class TfDataBlock extends CustomBlock {
     }
 
     toJavaScriptCode(block: CustomBlock): string | any[] {
+       // console.log("key:"+key + " value:"+val);
         return 'Not implemented';
     }
 
@@ -68,6 +57,6 @@ export class TfDataBlock extends CustomBlock {
 
 
     onChange(changeEvent: any) {
-        //console.log(changeEvent);
+       // console.log(changeEvent);
     }
 }

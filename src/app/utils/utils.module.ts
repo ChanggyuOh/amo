@@ -21,6 +21,7 @@ import { BlocklyComponent } from './blockly/blockly.component';
 import { NgxBlocklyModule } from 'ngx-blockly';
 import { EditorDialogComponent } from './my-editor/editor-dialog/editor-dialog.component';
 import { AngularSplitModule } from 'angular-split';
+import { ShaderComponent } from './shader/shader.component';
 // Make sure we use fontawesome everywhere in Form.io renderers.
 (Formio as any).icons = 'fontawesome';
 
@@ -67,7 +68,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 };
 
 @NgModule({
-  declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent],
+  declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent],
   imports: [
     CommonModule,
     UtilsRoutingModule,
