@@ -1,21 +1,54 @@
-<form class="example-form">
-<mat-form-field>
-    <input type="text"
-            placeholder="Select a language"
-            matInput
-            [formControl]="myControl"
-            [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getLanguage($event.option.value)'>
-    <mat-option *ngFor="let language of filteredOptions | async" [value]="language">
-        {{language}}
-    </mat-option>
-    </mat-autocomplete>
-</mat-form-field>
-</form>
-<ngx-monaco-editor [options]="options" 
+<div style="width: 100%; height: 100%">
+    <form class="example-form">
+        <mat-form-field>
+            <input type="text"
+                    placeholder="Select a language"
+                    matInput
+                    [formControl]="myControl"
+                    [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getLanguage($event.option.value)'>
+            <mat-option *ngFor="let language of filteredOptions | async" [value]="language">
+                {{language}}
+            </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        </form>
+    <as-split direction="vertical">
+      <as-split-area [size]="70">
+        <div id="my-code-editor-container">
+            <ngx-monaco-editor [options]="options" 
                    [model]="model" 
                    (onInit)="onInitEditor($event)"
                    class="my-code-editor"
-                   style="height: 80vh"
-                   #editor>
-</ngx-monaco-editor>
+                   
+                   #editor></ngx-monaco-editor>
+        </div>
+
+      </as-split-area>
+      <as-split-area [size]="30">
+        <app-term style="height: 30vh"></app-term>
+      </as-split-area>
+    </as-split>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

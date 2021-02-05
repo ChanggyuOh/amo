@@ -31,10 +31,8 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
-import { faTwitter, faFacebook, faInstagram, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons'
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { MatListSubheaderCssMatStyler } from '@angular/material/list';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { NgTerminalModule } from 'ng-terminal';
 export function onMonacoLoad() {
  
   console.log((window as any).monaco);
@@ -106,6 +104,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
     UtilsModule,
     SharedModule,
     DebateModule,
+    NgTerminalModule,
+    NgxJsonViewerModule,
     QuillModule.forRoot(),
     MonacoEditorModule.forRoot(monacoConfig),
     FontAwesomeModule,
