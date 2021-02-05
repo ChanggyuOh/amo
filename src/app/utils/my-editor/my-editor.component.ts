@@ -17,7 +17,8 @@ export class MyEditorComponent implements OnInit {
   filteredOptions: Observable<string[]>;
 
   options = {
-    theme: 'vs-dark'
+    theme: 'vs-dark',
+    automaticLayout: true
   };
   
   jsonCode = [

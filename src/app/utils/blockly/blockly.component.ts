@@ -94,7 +94,7 @@ public customBlocks: CustomBlock[] = [
   }
 
   onresize = (event) => {
-    var blocklyArea  = document.getElementById('blockly');
+    var blocklyArea  = document.getElementById('blocklyContainer');
     var blocklyDiv = document.getElementsByName('blocklyToolboxDiv')[0];
     var workspace = Blockly.inject(blocklyDiv,
       {toolbox: document.getElementById('toolbox')});

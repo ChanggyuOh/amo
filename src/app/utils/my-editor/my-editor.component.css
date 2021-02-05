@@ -1,0 +1,12 @@
+.my-code-editor {
+    width: 100%;
+    height:99%;
+    position:relative;display:block
+ }
+ #my-code-editor-container{
+   position:relative;
+   top:0;
+   left:0px;
+   right:0px;
+   height:100%;display:block;
+ }

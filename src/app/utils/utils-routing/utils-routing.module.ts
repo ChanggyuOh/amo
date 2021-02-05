@@ -8,9 +8,10 @@ import { MyEditorComponent } from '../my-editor/my-editor.component';
 import { MyDynamicFormComponent } from '../my-dynamic-form/my-dynamic-form.component';
 import { BlocklyComponent } from '../blockly/blockly.component';
 import { ShaderComponent } from '../shader/shader.component';
-
+import { TerminelComponent } from '../terminel/terminel.component';
 const routes: Routes = [
   { path: 'qr-gen', component: QrGenComponent },
+  { path: 'term', component: TerminelComponent },
   { path: 'flowy', component: MyFlowyComponent },
   { path: 'my-file-explorer', component: MyFileExplorerComponent },
   { path: 'editor', component: MyEditorComponent },
