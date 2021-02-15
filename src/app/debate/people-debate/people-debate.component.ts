@@ -11,6 +11,7 @@ import { CandidateDialogComponent } from '../candidate-dialog/candidate-dialog.c
 import { DynamicFormDialogComponent} from '../../utils/dynamic-form-dialog/dynamic-form-dialog.component';
 import { environment} from '../../../environments/environment'
 import { env } from 'process';
+import { PeopleDebateCandidateItem, CandidateItem, OpinionItem } from '../../_interface/people-debate-candidate.model';
 @Component({
   selector: 'app-people-debate',
   templateUrl: './people-debate.component.html',
@@ -20,6 +21,7 @@ export class PeopleDebateComponent implements OnInit {
   sub: any;
   public id: number;
   public peopleDebateItem: PeopleDebateItem;
+  public candidates: PeopleDebateCandidateItem[];
   user: SocialUser;
   loggedIn: boolean;
   data: any;
@@ -51,6 +53,15 @@ export class PeopleDebateComponent implements OnInit {
             this.peopleDebateItem = res;
             console.log("peopleDebateDate:"+res.title);
           });
+          this.repoService.getData(`debate/people/${this.id}/candidate`,this.user)
+          .subscribe((res:PeopleDebateCandidateItem[]) => {
+            this.candidates = res;
+            for(let i=0; i < res.length; i++) {
+              console.log("candidateId:"+res[i].id);
+              console.log("debateId:"+res[i].debateId);
+              console.log(res[i]);
+            }
+          });
         }
       });
      }
@@ -69,8 +80,29 @@ export class PeopleDebateComponent implements OnInit {
       
       if (result != null)
       {
+        var newCandidate = {debateId: this.id, candidate: result };
+        this.repoService.create("debate/people/candidate", newCandidate, null)
+        .subscribe((res:any) => {
+          this.peopleDebateItem = res;
+          console.log("candidateId:"+res);
+        });
         console.log(result);
       }
     });
+  }
+  toggleCandidateView = (isListView:boolean) => {
+    var view = document.getElementById("my-candidates");
+    if (isListView && view.classList.contains("my-candidate-ul-click"))
+    {
+      view.classList.toggle("my-candidate-ul-click");
+      for(let i=0; i < view.children.length; i++)
+        view.children[i].classList.toggle("my-candidate-li-click");
+    }
+    if (!isListView && !view.classList.contains("my-candidate-ul-click"))
+    {
+      view.classList.toggle("my-candidate-ul-click");
+      for(let i=0; i < view.children.length; i++)
+        view.children[i].classList.toggle("my-candidate-li-click");
+    }
   }
 }

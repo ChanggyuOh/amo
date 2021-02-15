@@ -13,7 +13,7 @@ import { MyFileExplorerComponent } from './my-file-explorer/my-file-explorer.com
 import { MyEditorComponent } from './my-editor/my-editor.component';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { MyDynamicFormComponent } from './my-dynamic-form/my-dynamic-form.component';
-import { MatFormioModule } from '@formio/angular-material';
+//import { MatFormioModule } from '@formio/angular-material';
 import { Formio, FormioModule, FormioAppConfig } from '@formio/angular';
 import { DynamicFormDialogComponent } from './dynamic-form-dialog/dynamic-form-dialog.component';
 import { AppConfig } from '../config';
@@ -25,6 +25,16 @@ import { ShaderComponent } from './shader/shader.component';
 import { TerminelComponent } from './terminel/terminel.component';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { NgTerminalModule } from 'ng-terminal';
+import { MyFormBuilderComponent } from './my-form-builder/my-form-builder.component';
+import { InputComponent } from "./my-form-builder/components/input/input.component";
+import { ButtonComponent } from "./my-form-builder/components/button/button.component";
+import { SelectComponent } from "./my-form-builder/components/select/select.component";
+import { DateComponent } from "./my-form-builder/components/date/date.component";
+import { RadiobuttonComponent } from "./my-form-builder/components/radiobutton/radiobutton.component";
+import { CheckboxComponent } from "./my-form-builder/components/checkbox/checkbox.component";
+import { FileUploadComponent } from "./my-form-builder/components/fileupload/fileupload.component";
+import { DynamicFieldDirective } from "./my-form-builder/components/dynamic-field/dynamic-field.directive";
+import { DynamicFormComponent } from "./my-form-builder/components/dynamic-form/dynamic-form.component";
 // Make sure we use fontawesome everywhere in Form.io renderers.
 (Formio as any).icons = 'fontawesome';
 
@@ -71,7 +81,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
 };
 
 @NgModule({
-  declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent, TerminelComponent],
+  declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent, TerminelComponent, MyFormBuilderComponent, InputComponent,
+    ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent],
   imports: [
     CommonModule,
     UtilsRoutingModule,
@@ -79,7 +90,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
     NgxQRCodeModule,
     MaterialModule,
     FormsModule,
-    MatFormioModule,
+    //MatFormioModule,
     FormioModule,
     ReactiveFormsModule,
     NgxBlocklyModule,
@@ -89,6 +100,15 @@ const monacoConfig: NgxMonacoEditorConfig = {
   ],
   providers:[
     {provide: FormioAppConfig, useValue: AppConfig},
+  ],
+  entryComponents: [
+    InputComponent,
+    ButtonComponent,
+    SelectComponent,
+    DateComponent,
+    RadiobuttonComponent,
+    CheckboxComponent,
+    FileUploadComponent
   ]
 })
 export class UtilsModule { }

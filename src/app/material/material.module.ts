@@ -36,8 +36,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CdkTableModule } from "@angular/cdk/table";
-import {DragDropModule} from '@angular/cdk/drag-drop';
-
+import { DragDropModule} from '@angular/cdk/drag-drop';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 @NgModule({
   declarations: [],
   imports: [
@@ -60,12 +60,13 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatInputModule,
     MatListModule,
     MatMenuModule,
-    //MatNativeDateModule,
+    MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
-    //MatRippleModule,
+    MatMomentDateModule,
+    MatRippleModule,
     MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
@@ -98,12 +99,11 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatInputModule,
     MatListModule,
     MatMenuModule,
-  //  MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
-  //  MatRippleModule,
+    MatRippleModule,
     MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
