@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { QrGenComponent } from './qr-gen/qr-gen.component';
 import { UtilsRoutingModule } from './utils-routing/utils-routing.module';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
@@ -35,6 +36,7 @@ import { CheckboxComponent } from "./my-form-builder/components/checkbox/checkbo
 import { FileUploadComponent } from "./my-form-builder/components/fileupload/fileupload.component";
 import { DynamicFieldDirective } from "./my-form-builder/components/dynamic-field/dynamic-field.directive";
 import { DynamicFormComponent } from "./my-form-builder/components/dynamic-form/dynamic-form.component";
+import { MyFormViewerComponent } from './my-form-viewer/my-form-viewer.component';
 // Make sure we use fontawesome everywhere in Form.io renderers.
 (Formio as any).icons = 'fontawesome';
 
@@ -82,7 +84,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 
 @NgModule({
   declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent, TerminelComponent, MyFormBuilderComponent, InputComponent,
-    ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent],
+    ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent, MyFormViewerComponent],
   imports: [
     CommonModule,
     UtilsRoutingModule,
@@ -90,6 +92,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
     NgxQRCodeModule,
     MaterialModule,
     FormsModule,
+    DragDropModule,
     //MatFormioModule,
     FormioModule,
     ReactiveFormsModule,

@@ -1,2 +1,44 @@
+<div class="container">
+<h2>Boards</h2>
+<div class="board">
+  <div class="lane lane-1" 
+    cdkDropList 
+    #todo="cdkDropList"
+    [cdkDropListData]="toDoList"
+    [cdkDropListConnectedTo]="[inProgress]"
+    (cdkDropListDropped)="drop($event)"
+    >
+    <div class="heading todo">HTML ITEMS</div>
+    <div *ngFor="let item of toDoList" class="task"
+       cdkDrag>{{item}}</div>
+  </div>
 
-    <dynamic-form [fields]="regConfig" (submit)="submit($event)"></dynamic-form>
+  <div class="lane lane-2" 
+    cdkDropList 
+    #inProgress="cdkDropList"
+    [cdkDropListData]="inProgressList"
+    (cdkDropListDropped)="drop($event)"
+    >
+    <div class="heading doing">Preview</div>
+    <div *ngFor="let item of inProgressList" class="task" cdkDrag>{{item}}</div>
+  </div>
+</div>
+<div>
+    <mat-card>
+        <ul>
+            <li>
+                <mat-form-field>
+                    <label for="{{inflightData.name}}">Name</label>
+                    <input formControlName="name" id="{{inflightData.name}}" matInput value="{{inflightData.name}}">
+                  </mat-form-field>
+            </li>            
+            <li>
+                <mat-form-field>
+                    <label for="{inflightData.type}}">Type</label>
+                    <input formControlName="type" id="{{inflightData.type}}" matInput value="{{inflightData.type}}"/>
+                  </mat-form-field>
+            </li>            
+        </ul>
+    </mat-card>
+</div>
+</div>

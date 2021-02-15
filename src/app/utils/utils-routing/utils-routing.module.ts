@@ -10,6 +10,8 @@ import { BlocklyComponent } from '../blockly/blockly.component';
 import { ShaderComponent } from '../shader/shader.component';
 import { TerminelComponent } from '../terminel/terminel.component';
 import { MyFormBuilderComponent} from '../my-form-builder/my-form-builder.component';
+import { MyFormViewerComponent} from '../my-form-viewer/my-form-viewer.component';
+
 const routes: Routes = [
   { path: 'qr-gen', component: QrGenComponent },
   { path: 'term', component: TerminelComponent },
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path: 'my-file-explorer', component: MyFileExplorerComponent },
   { path: 'editor', component: MyEditorComponent },
   { path: 'form-builder', component: MyFormBuilderComponent },
+  { path: 'form-viewer', component: MyFormViewerComponent },
   { path: 'blockly', component: BlocklyComponent},
   { path: 'shader', component: ShaderComponent },
 ];
