@@ -1,44 +1,57 @@
 <div class="container">
-<h2>Boards</h2>
-<div class="board">
-  <div class="lane lane-1" 
-    cdkDropList 
-    #todo="cdkDropList"
-    [cdkDropListData]="toDoList"
-    [cdkDropListConnectedTo]="[inProgress]"
-    (cdkDropListDropped)="drop($event)"
-    >
-    <div class="heading todo">HTML ITEMS</div>
-    <div *ngFor="let item of toDoList" class="task"
-       cdkDrag>{{item}}</div>
-  </div>
-
-  <div class="lane lane-2" 
-    cdkDropList 
-    #inProgress="cdkDropList"
-    [cdkDropListData]="inProgressList"
-    (cdkDropListDropped)="drop($event)"
-    >
-    <div class="heading doing">Preview</div>
-    <div *ngFor="let item of inProgressList" class="task" cdkDrag>{{item}}</div>
-  </div>
-</div>
-<div>
-    <mat-card>
-        <ul>
-            <li>
-                <mat-form-field>
-                    <label for="{{inflightData.name}}">Name</label>
-                    <input formControlName="name" id="{{inflightData.name}}" matInput value="{{inflightData.name}}">
-                  </mat-form-field>
-            </li>            
-            <li>
-                <mat-form-field>
-                    <label for="{inflightData.type}}">Type</label>
-                    <input formControlName="type" id="{{inflightData.type}}" matInput value="{{inflightData.type}}"/>
-                  </mat-form-field>
-            </li>            
-        </ul>
-    </mat-card>
-</div>
+    <div class="board-container">
+        <div class="board-title">
+            <h2>Boards</h2>
+        </div>
+        <div class="board">
+            <div class="element-list">
+                <div 
+                    cdkDropList 
+                    #todo="cdkDropList"
+                    [cdkDropListData]="toDoList"
+                    (cdkDropListDropped)="drop($event)"
+                    >
+                    <div class="heading"><h3>HTML ITEMS</h3></div>
+                    <div *ngFor="let item of toDoList" class="task" cdkDrag>
+                        <button mat-button mat-raised-button color="primary" style="width: 200px;text-align:left;margin-left: 10px; margin-bottom: 5px;">
+                            <mat-icon>
+                                {{item.icon}}
+                            </mat-icon>
+                            {{item.desc}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-list">
+              <div cdkDropList class="example-list" (cdkDropListDropped)="dropPreview($event)">
+                <div *ngFor="let item of previewList" class="task" cdkDrag>
+                    <button mat-button mat-raised-button color="primary" style="width: 200px;text-align:left;margin-left: 10px; margin-bottom: 5px;">
+                        <mat-icon>
+                            {{item.icon}}
+                        </mat-icon>
+                        {{item.desc}}
+                    </button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="properties-window">
+        <!-- <mat-card>
+            <ul  [formGroup]="myGroup">
+                <li>
+                    <mat-form-field>
+                        <label for="{{inflightData.name}}">Name</label>
+                        <input formControlName="name" id="{{inflightData.name}}" matInput value="{{inflightData.name}}">
+                      </mat-form-field>
+                </li>            
+                <li>
+                    <mat-form-field>
+                        <label for="{inflightData.type}}">Type</label>
+                        <input formControlName="type" id="{{inflightData.type}}" matInput value="{{inflightData.type}}"/>
+                      </mat-form-field>
+                </li>            
+            </ul>
+        </mat-card> -->
+    </div>
 </div>

@@ -2,57 +2,25 @@
     display: flex; /* or inline-flex */
     flex-direction: row;
     align-content: flex-start;
-  }
+}
 
-div {
-    font-family: Lato;
-  }
-  
-  .board {
-    width: 700px;
-    border: 1px solid saddlebrown;
-    height: 600px;
-    display: flex;
-    justify-content: space-evenly;
-  }
-  
-  .lane {
-    border: 1px solid black;
-    padding: 2px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .task {
-    padding: 0.75em 1.5em 0.75em 1em;
-    margin-bottom: 0.5em;
-    background: #cfcfcf;
-    cursor: pointer;
-    font-size: 0.85em;
-    font-family: "Roboto Slab", sans-serif;
-  }
-  .task:hover {
-    outline: 3px solid #205081;
-  }
-  
-  .heading {
-    padding: 1em 0;
-    font-weight: bolder;
-    background: #ffffff;
-    color: #000000;
-    border-bottom: 0.5em solid #ffffff;
-    text-align: center;
-    font-family: "Roboto Slab", sans-serif;
-  }
-  
-  .todo {
-    background: #3572b0;
-  }
-  
-  .doing {
-    background: #f6c342;
-  }
-  
-  .done {
-      background: #14892c;
-  }
+.board {
+    display: flex; /* or inline-flex */
+    flex-direction: row;
+    align-content: flex-start;
+}
+
+.heading {
+    margin-left: 20px;
+    background-color: rgb(255, 248, 248);
+}
+.element-list {
+    width: 220px;
+    background-color: rgb(255, 248, 248);
+}
+
+.preview-list {
+    margin-top:58px;
+    width: 500px;
+    background-color: wheat;
+}
