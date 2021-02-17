@@ -20,7 +20,19 @@
 }
 
 .preview-list {
-    margin-top:58px;
+    
+}
+.preview-panel {
     width: 500px;
     background-color: wheat;
+    min-height: 600px;
 }
+.properties-window {
+    width: 800px;
+}
+.properties-window > mat-card {
+    width: 90%;
+}
+.example-full-width {
+    width: 96%;
+  }

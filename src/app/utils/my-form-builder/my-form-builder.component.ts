@@ -13,9 +13,9 @@ export interface iDraggable {
   styleUrls: ['./my-form-builder.component.css']
 })
 export class MyFormBuilderComponent implements OnInit {
-  inProgressList: iDraggable[] = [ { icon:'input', desc:'Input Text'}];
+  configList: FieldConfig[] = [];
   previewList: iDraggable[] = [];
-  inflightData: FieldConfig = { name:'hello', label:'label', inputType:'input', options: null, collections: null, type:'string', validations:null, value:"test"};
+  inflightData: FieldConfig = { name:'hello', label:'label', inputType:'string', options: null, collections: null, type:'inputtext', validations:null, value:"test"};
   toDoList: iDraggable[] = [
     { icon:'input', desc:'Input Text'},
     { icon:'file_upload', desc:'Input File'},
@@ -40,11 +40,10 @@ export class MyFormBuilderComponent implements OnInit {
   constructor() {
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    console.log(event.previousContainer.data[event.previousIndex])
-    console.log(this.inProgressList);
+  drop = (event: CdkDragDrop<string[]>): void => {
     let itemReceived:any = event.previousContainer.data[event.previousIndex]
-    this.previewList.push({icon:itemReceived.icon, desc:itemReceived.desc});
+    this.addItem(itemReceived, event.previousIndex)
+
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -54,13 +53,60 @@ export class MyFormBuilderComponent implements OnInit {
         event.currentIndex);
     }
   }
-  dropPreview(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.previewList, event.previousIndex, event.currentIndex);
+  private addItem = (item:iDraggable, index: number):void =>{
+    this.previewList.push({icon:item.icon, desc:item.desc});
+    let newItem:FieldConfig = {label:"",type:"", name:"",inputType:"",options:[],collections:null,value:"",validations:[]};
+    
+    switch(item.desc)
+    {
+      case 'Input Text': newItem.type = "inputtext";
+        break;
+      case 'Input File': newItem.type = "inputfile";
+        break;
+      case 'Input TextArea': newItem.type = "inputtextarea";
+        break;
+      case 'Checkbox': newItem.type = "checkbox";
+        break;
+      case 'Select Boxes': newItem.type = "radiogroup";
+        break;
+      case 'Select': newItem.type = "select";
+        break;
+      case 'Button': newItem.type = "button";
+        break;
+      case 'Tag': newItem.type = "tag";
+        break;
+      case 'Date/Time': newItem.type = "datetime";
+        break;
+      case 'Content': newItem.type = "content";
+        break;
+      case 'Field Set': newItem.type = "fieldset";
+        break;
+      case 'Panel': newItem.type = "panel";
+        break;
+      case 'Well': newItem.type = "well";
+        break;
+      case 'Columns': newItem.type = "columns";
+        break;
+    }
+    this.configList.push(newItem);
   }
 
-  onEntered(enter) {
+  dropPreview = (event: CdkDragDrop<string[]>):void => {
+    moveItemInArray(this.previewList, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.configList, event.previousIndex, event.currentIndex);
+  }
+
+  onEntered = (enter): void => {
     console.log('ee', enter);
   }
-
+  onRemoveItem = (index:any): void =>{
+    this.previewList.splice(index[0],1);
+    this.configList.splice(index[0],1);
+  }
+  showProperties = (index:any): void => {
+    console.log("selected index:"+index[0]);
+    this.inflightData = this.configList[index[0]];
+    console.log("selected tye:"+this.inflightData.type);
+  }
   ngOnInit(){}
 }

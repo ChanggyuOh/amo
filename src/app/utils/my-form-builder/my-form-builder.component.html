@@ -1,16 +1,8 @@
 <div class="container">
     <div class="board-container">
-        <div class="board-title">
-            <h2>Boards</h2>
-        </div>
         <div class="board">
             <div class="element-list">
-                <div 
-                    cdkDropList 
-                    #todo="cdkDropList"
-                    [cdkDropListData]="toDoList"
-                    (cdkDropListDropped)="drop($event)"
-                    >
+                <div cdkDropList  #todo="cdkDropList" [cdkDropListData]="toDoList" (cdkDropListDropped)="drop($event)">
                     <div class="heading"><h3>HTML ITEMS</h3></div>
                     <div *ngFor="let item of toDoList" class="task" cdkDrag>
                         <button mat-button mat-raised-button color="primary" style="width: 200px;text-align:left;margin-left: 10px; margin-bottom: 5px;">
@@ -23,35 +15,81 @@
                 </div>
             </div>
             <div class="preview-list">
-              <div cdkDropList class="example-list" (cdkDropListDropped)="dropPreview($event)">
-                <div *ngFor="let item of previewList" class="task" cdkDrag>
-                    <button mat-button mat-raised-button color="primary" style="width: 200px;text-align:left;margin-left: 10px; margin-bottom: 5px;">
-                        <mat-icon>
-                            {{item.icon}}
-                        </mat-icon>
-                        {{item.desc}}
-                    </button>
+                <div cdkDropList (cdkDropListDropped)="dropPreview($event)">
+                    <div class="heading"><h3>DRAG PANEL</h3></div>
+                    <div class="preview-panel">
+                        <div *ngFor="let item of previewList; let i=index" cdkDrag>
+                            <div class="box"  (mouseover)="hideElement = false" (mouseleave)="hideElement = true">
+                            <button mat-button mat-raised-button color="accent" (click)="showProperties([i])" style="width: 200px; text-align:left;margin-left: 10px; margin-bottom: 5px;">
+                                <mat-icon>
+                                    {{item.icon}}
+                                </mat-icon>
+                                {{item.desc}} 
+                            </button>
+                            <button mat-mini-fab [hidden]='hideElement' (click)="onRemoveItem([i])"><mat-icon>close</mat-icon></button>
+                        </div>
+                    </div>
                 </div>
               </div>
             </div>
         </div>
     </div>
     <div class="properties-window">
-        <!-- <mat-card>
-            <ul  [formGroup]="myGroup">
+        <div>
+            <h3>Property Window</h3>
+        </div>
+        <mat-card>
+            <ul>
                 <li>
-                    <mat-form-field>
-                        <label for="{{inflightData.name}}">Name</label>
-                        <input formControlName="name" id="{{inflightData.name}}" matInput value="{{inflightData.name}}">
-                      </mat-form-field>
+                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
+                        <mat-label>LABEL</mat-label>
+                        <input matInput #input maxlength="10" placeholder="Label"[(ngModel)]="inflightData.label">
+                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                    </mat-form-field>
                 </li>            
                 <li>
-                    <mat-form-field>
-                        <label for="{inflightData.type}}">Type</label>
-                        <input formControlName="type" id="{{inflightData.type}}" matInput value="{{inflightData.type}}"/>
-                      </mat-form-field>
+                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
+                        <mat-label>NAME</mat-label>
+                        <input matInput #input maxlength="10" placeholder="Name" [(ngModel)]="inflightData.name">
+                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                    </mat-form-field>
+                </li>            
+                <li>
+                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
+                        <mat-label>TYPE</mat-label>
+                        <input disabled=true matInput #input maxlength="10" placeholder="Input type" [(ngModel)]="inflightData.type">
+                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                    </mat-form-field>
+                </li>            
+                <li>
+                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
+                        <mat-label>OPTIONS</mat-label>
+                        <input matInput #input maxlength="10" placeholder="Options" [(ngModel)]="inflightData.options">
+                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                    </mat-form-field>
+                </li>            
+                <li>
+                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
+                        <mat-label>COLLECTIONS</mat-label>
+                        <input matInput #input maxlength="10" placeholder="Collections" [(ngModel)]="inflightData.collections">
+                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                    </mat-form-field>
+                </li>            
+                <li>
+                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
+                        <mat-label>VALUE</mat-label>
+                        <input matInput #input maxlength="10" placeholder="Value" [(ngModel)]="inflightData.value">
+                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                    </mat-form-field>
+                </li>            
+                <li>
+                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
+                        <mat-label>VALIDATORS</mat-label>
+                        <input matInput #input maxlength="10" placeholder="Validator"[(ngModel)]="inflightData.validations">
+                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                    </mat-form-field>
                 </li>            
             </ul>
-        </mat-card> -->
+        </mat-card>
     </div>
 </div>
