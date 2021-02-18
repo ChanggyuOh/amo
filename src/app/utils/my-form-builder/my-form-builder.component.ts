@@ -15,7 +15,7 @@ export interface iDraggable {
 export class MyFormBuilderComponent implements OnInit {
   configList: FieldConfig[] = [];
   previewList: iDraggable[] = [];
-  inflightData: FieldConfig = { name:'hello', label:'label', inputType:'string', options: null, collections: null, type:'inputtext', validations:null, value:"test"};
+  inflightData: FieldConfig = { name:'', label:'', inputType:'', options: null, collections: null, type:'', validations:null, value:""};
   toDoList: iDraggable[] = [
     { icon:'input', desc:'Input Text'},
     { icon:'file_upload', desc:'Input File'},
@@ -35,9 +35,14 @@ export class MyFormBuilderComponent implements OnInit {
   myGroup = new FormGroup({
     name: new FormControl(),
     type: new FormControl()
- });
-
+  });
+  dataSource: string[];
+  optionInput: string = '';
+  validator: Validator = {name:'', validator:'', message:''};
+  collectionItemInput: string = '';
+  displayedColumns = ['option']
   constructor() {
+    this.dataSource = this.inflightData.options;
   }
 
   drop = (event: CdkDragDrop<string[]>): void => {
@@ -109,4 +114,34 @@ export class MyFormBuilderComponent implements OnInit {
     console.log("selected tye:"+this.inflightData.type);
   }
   ngOnInit(){}
+  addOption = ():void =>{
+    if (this.inflightData.options == null)
+      this.inflightData.options = [];
+
+    console.log(this.optionInput);
+    this.inflightData.options.push(this.optionInput);
+  }
+  removeOption = (index:number):void => {
+    this.inflightData.options.splice(index,1)
+  }
+  addCollectionItem= ():void =>{
+    if (this.inflightData.collections == null)
+      this.inflightData.collections = [];
+
+    console.log(this.collectionItemInput);
+    this.inflightData.collections.push(this.collectionItemInput);
+  }
+  removeCollectionItem = (index:number):void => {
+    this.inflightData.collections.splice(index,1)
+  }
+  addValidator = ():void =>{
+    if (this.inflightData.validations == null)
+      this.inflightData.validations = [];
+
+    console.log(this.validator);
+    this.inflightData.validations.push(this.validator);
+  }
+  removeValidator = (index:number):void => {
+    this.inflightData.validations.splice(index,1)
+  }
 }

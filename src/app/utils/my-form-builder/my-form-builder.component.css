@@ -19,14 +19,23 @@
     background-color: rgb(255, 248, 248);
 }
 
-.preview-list {
-    
-}
 .preview-panel {
     width: 500px;
     background-color: wheat;
     min-height: 600px;
 }
+#property-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#property-table tr:hover {background-color: #ddd;}
+
+#property-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
 .properties-window {
     width: 800px;
 }
@@ -36,3 +45,18 @@
 .example-full-width {
     width: 96%;
   }
+.property-item {
+    width:400px;
+    height: 36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    font-size: large;
+}
+.property-label{
+    text-align: right;
+    padding-right: 10px;
+}
+.add-field-option{
+    width: 200px; 
+    background-color: aqua;
+}

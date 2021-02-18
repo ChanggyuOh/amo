@@ -38,58 +38,130 @@
         <div>
             <h3>Property Window</h3>
         </div>
-        <mat-card>
-            <ul>
-                <li>
-                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
-                        <mat-label>LABEL</mat-label>
-                        <input matInput #input maxlength="10" placeholder="Label"[(ngModel)]="inflightData.label">
-                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-                    </mat-form-field>
-                </li>            
-                <li>
-                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
-                        <mat-label>NAME</mat-label>
-                        <input matInput #input maxlength="10" placeholder="Name" [(ngModel)]="inflightData.name">
-                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-                    </mat-form-field>
-                </li>            
-                <li>
-                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
-                        <mat-label>TYPE</mat-label>
-                        <input disabled=true matInput #input maxlength="10" placeholder="Input type" [(ngModel)]="inflightData.type">
-                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-                    </mat-form-field>
-                </li>            
-                <li>
-                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
-                        <mat-label>OPTIONS</mat-label>
-                        <input matInput #input maxlength="10" placeholder="Options" [(ngModel)]="inflightData.options">
-                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-                    </mat-form-field>
-                </li>            
-                <li>
-                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
-                        <mat-label>COLLECTIONS</mat-label>
-                        <input matInput #input maxlength="10" placeholder="Collections" [(ngModel)]="inflightData.collections">
-                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-                    </mat-form-field>
-                </li>            
-                <li>
-                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
-                        <mat-label>VALUE</mat-label>
-                        <input matInput #input maxlength="10" placeholder="Value" [(ngModel)]="inflightData.value">
-                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-                    </mat-form-field>
-                </li>            
-                <li>
-                    <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="example-full-width">
-                        <mat-label>VALIDATORS</mat-label>
-                        <input matInput #input maxlength="10" placeholder="Validator"[(ngModel)]="inflightData.validations">
-                        <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-                    </mat-form-field>
-                </li>            
-            </ul>
-        </mat-card>
+        <table id="property-table">
+            <thead>
+                <tr>
+                    <td style="width: 20%; text-align: center;">Property Name:</td>
+                    <td style="width: 70%; text-align: center;">Property Value:</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="property-label">
+                        <h4>LABEL:</h4>
+                    </td>
+                    <td style="width:100%;">
+                        <input class="property-item" autocomplete="false" #label type="text" [(ngModel)]="inflightData.label" >
+                        <mat-hint align="end">count {{label.value?.length || 0}}</mat-hint>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="property-label">
+                        <h4>NAME:</h4>
+                    </td>
+                    <td style="width:100%;">
+                        <input class="property-item" autocomplete="false" #name type="text"[(ngModel)]="inflightData.name" >
+                        <mat-hint align="end">count {{name.value?.length || 0}}</mat-hint>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="property-label">
+                        <h4>TYPE:</h4>
+                    </td>
+                    <td style="width:100%;">
+                        <input class="property-item" autocomplete="false" #type type="text"[(ngModel)]="inflightData.type" >
+                        <mat-hint align="end">count {{type.value?.length || 0}}</mat-hint>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="property-label">
+                        <h4>VALUE:</h4>
+                    </td>
+                    <td style="width:100%;">
+                        <input class="property-item" autocomplete="false" #value type="text"[(ngModel)]="inflightData.value" >
+                        <mat-hint align="end">count {{value.value?.length || 0}}</mat-hint>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="property-label">
+                        <h4>OPTIONS:</h4>
+                    </td>
+                    <td style="width:100%;">
+                        <div *ngFor="let opt of inflightData.options; let i = index">
+                            <mat-form-field>
+                              <input matInput placeholder="option" autocomplete="false" type="text"
+                              name="opt-{{i}}" value="{{opt}}">
+                            </mat-form-field>
+                  
+                            <button mat-icon-button (click)='removeOption(i)'>
+                              <mat-icon>indeterminate_check_box</mat-icon>
+                            </button>
+                          </div>
+                          <div style="display: flex; flex-direction: row;">
+                            <input class="add-field-option" autocomplete="off" matInput placeholder="add new option" type="text" [(ngModel)]="optionInput">
+                            <button mat-icon-button (click)='addOption()'>
+                                <mat-icon>note_add</mat-icon>
+                              </button>
+                          </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="property-label">
+                        <h4>COLLECTIONS:</h4>
+                    </td>
+                    <td style="width:100%;">
+                        <div *ngFor="let col of inflightData.collections; let i = index">
+                            <mat-form-field>
+                              <input matInput placeholder="Collection" autocomplete="off" type="text"
+                              name="coll-{{i}}" value="{{col}}">
+                            </mat-form-field>
+                  
+                            <button mat-icon-button (click)='removeCollectionItem(i)'>
+                              <mat-icon>indeterminate_check_box</mat-icon>
+                            </button>
+                          </div>
+                          <div style="display: flex; flex-direction: row;">
+                            <input class="add-field-option" autocomplete="off" matInput placeholder="add new item" type="text" value="{{collectionItemInput}}">
+                            <button mat-icon-button (click)='addCollectionItem()'>
+                                <mat-icon>note_add</mat-icon>
+                              </button>
+                          </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="property-label">
+                        <h4>VALIDATIONS:</h4>
+                    </td>
+                    <td style="width:100%;">
+                        <div *ngFor="let val of inflightData.validations; let i = index">
+                            <mat-form-field>
+                              <input matInput autocomplete="off" placeholder="Name" type="text"
+                              name="name-{{i}}" value="{{val.name}}">
+                            </mat-form-field>
+                            <mat-form-field>
+                              <input matInput autocomplete="off" placeholder="Validator" type="text"
+                              name="vali-{{i}}" value="{{val.validator}}">
+                            </mat-form-field>
+                            <mat-form-field>
+                              <input matInput autocomplete="off" placeholder="Message" type="text"
+                              name="message-{{i}}" value="{{val.message}}">
+                            </mat-form-field>
+                  
+                            <button mat-icon-button (click)='removeValidator(i)'>
+                              <mat-icon>indeterminate_check_box</mat-icon>
+                            </button>
+                          </div>
+                          <div style="display: flex; flex-direction: row;">
+                            <input autocomplete="off" class="add-field-option"  matInput placeholder="add new validator name" type="text" [(ngModel)]="validator.name">
+                            <input autocomplete="off" class="add-field-option"  matInput placeholder="add new validator" type="text" [(ngModel)]="validator.validator">
+                            <input autocomplete="off" class="add-field-option"  matInput placeholder="add new validator message" type="text" [(ngModel)]="validator.message">
+                            <button mat-icon-button (click)='addValidator()'>
+                                <mat-icon>note_add</mat-icon>
+                              </button>
+                          </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
