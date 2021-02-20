@@ -1,3 +1,34 @@
+<mat-expansion-panel #mapanel="matExpansionPanel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h2><mat-icon>dynamic_form</mat-icon><span>Forms</span></h2>
+      </mat-panel-title>
+      <mat-panel-description>
+        <h3>This is a summary of the content</h3>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul *ngFor="let fm of formList; let i=index;">
+        <li>
+            <mat-button-toggle-group>
+                <mat-button-toggle value="bold" style="width: 100px;">
+                    id: {{fm.id}}
+                </mat-button-toggle>
+                <mat-button-toggle value="italic" style="width: 300px;">
+                    <span style="width:100%;text-align: left;">name: {{fm.name}}</span>
+                </mat-button-toggle>
+                <mat-button-toggle value="underline" style="width: 500px;">
+                    description: {{fm.description}}
+                </mat-button-toggle>
+                <mat-button-toggle value="underline" style="width: 200px;">
+                    <button mat-button (click)="onFormEdit([i])"><mat-icon>edit</mat-icon>edit</button> 
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+        </li>
+    </ul>
+    <mat-action-row>
+        <button mat-flat-button (click)="mapanel.close()">Click to close</button>
+    </mat-action-row>
+  </mat-expansion-panel>
 <div class="container">
     <div class="board-container">
         <div class="board">
@@ -163,5 +194,27 @@
                 </tr>
             </tbody>
         </table>
+        <mat-button-toggle-group style="width: 100%;">
+            <mat-button-toggle value="underline">
+                <span style="font-size: medium;font-weight: bold;">form name:</span>
+            </mat-button-toggle>
+            <mat-button-toggle value="underline">
+                <input autocomplete="off" matInput [(ngModel)]="currentForm.name">
+            </mat-button-toggle>
+            <mat-button-toggle value="underline">
+                <span style="font-size: medium;font-weight: bold;">form description:</span>
+            </mat-button-toggle>
+            <mat-button-toggle value="underline">
+                <input autocomplete="off" matInput style="width: 300px;" [(ngModel)]="currentForm.description">
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-button-toggle-group style="width: 100%;">
+            <mat-button-toggle value="underline">
+                <button mat-button (click)="saveForm()"><mat-icon>save</mat-icon>save</button> 
+            </mat-button-toggle>
+            <mat-button-toggle>
+                <div class="item" id="alarmmsg"></div>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
     </div>
 </div>

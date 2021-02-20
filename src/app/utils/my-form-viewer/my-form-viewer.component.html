@@ -1,1 +1,33 @@
-<dynamic-form [fields]="regConfig" (submit)="submit($event)"></dynamic-form>
+<mat-expansion-panel #mapanel="matExpansionPanel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h2><mat-icon>dynamic_form</mat-icon><span>Forms</span></h2>
+      </mat-panel-title>
+      <mat-panel-description>
+        <h3>This is a summary of the content</h3>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul *ngFor="let fm of formList; let i=index;">
+        <li>
+            <mat-button-toggle-group>
+                <mat-button-toggle value="bold" style="width: 100px;">
+                    id: {{fm.id}}
+                </mat-button-toggle>
+                <mat-button-toggle value="italic" style="width: 300px;">
+                    <span style="width:100%;text-align: left;">name: {{fm.name}}</span>
+                </mat-button-toggle>
+                <mat-button-toggle value="underline" style="width: 500px;">
+                    description: {{fm.description}}
+                </mat-button-toggle>
+                <mat-button-toggle value="underline" style="width: 200px;">
+                    <button mat-button (click)="onFormPreview([i])"><mat-icon>preview</mat-icon>view</button> 
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+        </li>
+    </ul>
+    <mat-action-row>
+        <button mat-flat-button (click)="mapanel.close()">Click to close</button>
+    </mat-action-row>
+</mat-expansion-panel>
+
+<dynamicFormAnchor></dynamicFormAnchor>

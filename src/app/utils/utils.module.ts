@@ -37,6 +37,7 @@ import { FileUploadComponent } from "./my-form-builder/components/fileupload/fil
 import { DynamicFieldDirective } from "./my-form-builder/components/dynamic-field/dynamic-field.directive";
 import { DynamicFormComponent } from "./my-form-builder/components/dynamic-form/dynamic-form.component";
 import { MyFormViewerComponent } from './my-form-viewer/my-form-viewer.component';
+import { AnchorDirective } from './my-form-viewer/anchor.directive';
 // Make sure we use fontawesome everywhere in Form.io renderers.
 (Formio as any).icons = 'fontawesome';
 
@@ -84,7 +85,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 
 @NgModule({
   declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent, TerminelComponent, MyFormBuilderComponent, InputComponent,
-    ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent, MyFormViewerComponent],
+    ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent, MyFormViewerComponent, AnchorDirective],
   imports: [
     CommonModule,
     UtilsRoutingModule,

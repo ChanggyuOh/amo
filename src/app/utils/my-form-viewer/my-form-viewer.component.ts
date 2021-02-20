@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ViewContainerRef, ComponentFactoryResolver, Input } from '@angular/core';
 import {myFormBuilder } from '../my-form-builder/myFormbuilder';
 import { DomSanitizer, SafeUrl, SafeHtml } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
@@ -7,6 +7,11 @@ import { P } from '@angular/cdk/keycodes';
 import { Validators } from "@angular/forms";
 import { FieldConfig, Validator } from "../my-form-builder/components/field.interface";
 import { DynamicFormComponent } from "../my-form-builder/components/dynamic-form/dynamic-form.component";
+import { FormDefinitionElement} from "../my-form-builder/my-form-builder.component";
+import { RepositoryService } from "../../shared/repository.service";
+import { Observable } from 'rxjs';
+import { AnchorDirective } from './anchor.directive';
+import { DynamicFormItem } from './dynamic-form-item';
 
 @Component({
   selector: 'app-my-form-viewer',
@@ -15,7 +20,14 @@ import { DynamicFormComponent } from "../my-form-builder/components/dynamic-form
 })
 
 export class MyFormViewerComponent implements OnInit {
-  @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
+  //@ViewChild(DynamicFormComponent) form: DynamicFormComponent;
+  @ViewChild(AnchorDirective, {static:true}) dynamicFormAnchor: AnchorDirective;
+  @Input() currentDynamicForm: DynamicFormItem;
+  
+  public formList: FormDefinitionElement[];
+  public pageSize:number = 20;
+  currentForm: FormDefinitionElement = {id:0,name:'',description:'',definition:null};
+
   regConfig: FieldConfig[];
 data = `[{
   "type": "input",
@@ -93,11 +105,6 @@ data = `[{
   "value": true
 },
 {
-  "type": "fileupload",
-  "label": "fileupload",
-  "name": "fileupload"
-},
-{
   "type": "button",
   "label": "Save"
 }
@@ -113,12 +120,41 @@ data = `[{
     }
       
   }
-  constructor(private sanitizer: DomSanitizer) { 
+  constructor(private repoService: RepositoryService, 
+    private sanitizer: DomSanitizer, 
+    public viewContainerRef: ViewContainerRef,
+    private cfResolver: ComponentFactoryResolver) { 
+    var fl = this.getFormList(1);
+    fl.subscribe((res:FormDefinitionElement[]) =>{
+      this.formList = res;
+      this.currentDynamicForm = new DynamicFormItem(DynamicFormComponent, this.getFormData(0));
+    });
+    
     var o = JSON.parse(this.data);
-    var obj =[];
-    if (Array.isArray(o)){
-      o.forEach(item => {
+    var obj = this.buildObj(o);
+    //this.regConfig = obj;
+  }
+
+  ngOnInit(): void {
+  }
+
+  loadComponent = (index:number) => {
+    const formData = this.getFormData(index);
+    const componentFactory = this.cfResolver.resolveComponentFactory(this.currentDynamicForm.component);
+    const viewContainerRef = this.dynamicFormAnchor.viewContainerRef;
+    viewContainerRef.clear();
+
+    const componentRef = viewContainerRef.createComponent<DynamicFormComponent>(componentFactory);
+    componentRef.instance.fields = formData;
+  }
+
+  buildObj = (obj:any):FieldConfig[] => {
+    console.log("elm:"+obj);
+    var arry =[];
+    if (Array.isArray(obj)){
+      obj.forEach(item => {
         let elm = item as FieldConfig;
+        console.log("elm:"+elm);
         if (elm.validations){
           var validators = [];
           elm.validations.forEach(element => {
@@ -129,7 +165,7 @@ data = `[{
               message: vali.message
             });
           });
-          obj.push({
+          arry.push({
             label: elm.label,
             name: elm.name,
             inputType: elm.inputType,
@@ -140,7 +176,7 @@ data = `[{
           });
         }
         else {
-          obj.push({
+          arry.push({
             label: elm.label,
             name: elm.name,
             inputType: elm.inputType,
@@ -151,11 +187,28 @@ data = `[{
         }
       });
     }
-    this.regConfig = obj;
+    return arry;
   }
 
-  ngOnInit(): void {
+  private getFormList = (pageIndex: number): Observable<Object> => {
+    return this.repoService.getData(`forms/${pageIndex}/${this.pageSize}`, null);
   }
+
   submit(val){}
 
+  onFormPreview = (index:number):void => {
+    this.loadComponent(index);
+  }
+
+  getFormData = (index:number):any => {
+    let currentForm = JSON.parse(this.formList[index].definition);
+    for(var key in currentForm){
+      if (currentForm.hasOwnProperty(key))
+        if (Array.isArray(currentForm[key])){ // components
+          var obj = this.buildObj(currentForm[key]);
+          return obj;
+        }
+    }
+    return null;
+  }
 }

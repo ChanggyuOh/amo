@@ -19,11 +19,17 @@ import {
     selector: "dynamic-form",
     template: `
     <form class="dynamic-form" [formGroup]="form" (submit)="onSubmit($event)">
-    <ng-container *ngFor="let field of fields;" dynamicField [field]="field" [group]="form">
-    </ng-container>
+      <ng-container *ngFor="let field of fields;" dynamicField [field]="field" [group]="form"></ng-container>
     </form>
     `,
-    styles: []
+    styles: [`
+    .dynamic-form{
+      display: flex;
+      flex-direction: column;
+      width: 600px;
+      backgound-color:gray;
+    }
+    `]
   })
   export class DynamicFormComponent implements OnInit {
     @Input() fields: FieldConfig[] = [];
