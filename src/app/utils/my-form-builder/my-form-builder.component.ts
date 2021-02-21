@@ -144,7 +144,18 @@ export class MyFormBuilderComponent implements OnInit {
                     };
                       this.configList.push(textItem3);
                       break;
-                      case "inputfile": this.previewList.push({ icon:'file_upload', desc:'Input File'});
+                      case "fileupload": this.previewList.push({ icon:'file_upload', desc:'Input File'});
+                        let fileItem:FieldConfig = {
+                          label:element["label"],
+                          type:element["type"], 
+                          name:element["name"],
+                          inputType:"fileupload",
+                          options:[],
+                          collections:null,
+                          value:element["value"],
+                          validations:[]
+                        };
+                        this.configList.push(fileItem);
                       break;
                     case "checkbox": this.previewList.push({ icon:'check', desc:'Checkbox'});
                       let checkboxItem:FieldConfig = {
@@ -242,8 +253,8 @@ export class MyFormBuilderComponent implements OnInit {
       case 'Input Text': newItem.type = "input";
         newItem.inputType ="text";
         break;
-      case 'Input File': newItem.type = "inputfile";
-        newItem.inputType ="inputfile";
+      case 'Input File': newItem.type = "fileupload";
+        newItem.inputType ="fileupload";
         break;
       case 'Input TextArea': newItem.type = "inputtextarea";
         newItem.inputType ="textarea";

@@ -14,7 +14,8 @@ import {
   import { DateComponent } from "../date/date.component";
   import { RadiobuttonComponent } from "../radiobutton/radiobutton.component";
   import { CheckboxComponent } from "../checkbox/checkbox.component";
-  import { FileUploadComponent} from "../fileupload/fileupload.component";
+  //import { FileUploadComponent} from "../fileupload/fileupload.old.component";
+  import { MyFileUploadComponent } from "../fileupload/fileupload.component";
   const componentMapper = {
     input: InputComponent,
     button: ButtonComponent,
@@ -22,7 +23,8 @@ import {
     date: DateComponent,
     radiobutton: RadiobuttonComponent,
     checkbox: CheckboxComponent,
-    fileupload: FileUploadComponent
+    //fileupload: FileUploadComponent
+    fileupload: MyFileUploadComponent
   };
   @Directive({
     selector: "[dynamicField]"

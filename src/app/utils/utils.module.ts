@@ -33,7 +33,8 @@ import { SelectComponent } from "./my-form-builder/components/select/select.comp
 import { DateComponent } from "./my-form-builder/components/date/date.component";
 import { RadiobuttonComponent } from "./my-form-builder/components/radiobutton/radiobutton.component";
 import { CheckboxComponent } from "./my-form-builder/components/checkbox/checkbox.component";
-import { FileUploadComponent } from "./my-form-builder/components/fileupload/fileupload.component";
+import { FileUploadComponent } from "./my-form-builder/components/fileupload/fileupload.old.component";
+import { MyFileUploadComponent } from "./my-form-builder/components/fileupload/fileupload.component";
 import { DynamicFieldDirective } from "./my-form-builder/components/dynamic-field/dynamic-field.directive";
 import { DynamicFormComponent } from "./my-form-builder/components/dynamic-form/dynamic-form.component";
 import { MyFormViewerComponent } from './my-form-viewer/my-form-viewer.component';
@@ -84,7 +85,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 };
 
 @NgModule({
-  declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent, TerminelComponent, MyFormBuilderComponent, InputComponent,
+  declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent, TerminelComponent, MyFormBuilderComponent, InputComponent,MyFileUploadComponent,
     ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent, MyFormViewerComponent, AnchorDirective],
   imports: [
     CommonModule,
