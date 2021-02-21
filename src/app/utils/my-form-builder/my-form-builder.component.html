@@ -33,9 +33,9 @@
     <div class="board-container">
         <div class="board">
             <div class="element-list">
-                <div cdkDropList  #todo="cdkDropList" [cdkDropListData]="toDoList" (cdkDropListDropped)="drop($event)">
+                <div cdkDropList  #todo="cdkDropList" [cdkDropListData]="htmlElementsList" (cdkDropListDropped)="drop($event)">
                     <div class="heading"><h3>HTML ITEMS</h3></div>
-                    <div *ngFor="let item of toDoList" class="task" cdkDrag>
+                    <div *ngFor="let item of htmlElementsList" class="task" cdkDrag>
                         <button mat-button mat-raised-button color="primary" style="width: 200px;text-align:left;margin-left: 10px; margin-bottom: 5px;">
                             <mat-icon>
                                 {{item.icon}}
@@ -51,7 +51,7 @@
                     <div class="preview-panel">
                         <div *ngFor="let item of previewList; let i=index" cdkDrag>
                             <div class="box"  (mouseover)="hideElement = false" (mouseleave)="hideElement = true">
-                            <button mat-button mat-raised-button color="accent" (click)="showProperties([i])" style="width: 200px; text-align:left;margin-left: 10px; margin-bottom: 5px;">
+                            <button mat-button mat-raised-button color="accent" (click)="onPropertiesBind([i])" style="width: 200px; text-align:left;margin-left: 10px; margin-bottom: 5px;">
                                 <mat-icon>
                                     {{item.icon}}
                                 </mat-icon>
