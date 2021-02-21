@@ -30,17 +30,6 @@ export class MyFormViewerComponent implements OnInit {
 
   regConfig: FieldConfig[];
 
-  getValidator(valr: string): any {
-    if (valr == "Validators.required")
-      return Validators.required;
-    if (valr.startsWith("Validators.pattern(")){
-      console.log('valr:'+valr);
-      var pattern =`${valr.substring(valr.indexOf("('")+2, valr.indexOf("')"))}`;
-      console.log(pattern);
-      return Validators.pattern(pattern);
-    }
-      
-  }
   constructor(private repoService: RepositoryService, 
     private sanitizer: DomSanitizer, 
     public viewContainerRef: ViewContainerRef,
@@ -127,5 +116,16 @@ export class MyFormViewerComponent implements OnInit {
         }
     }
     return null;
+  }
+
+  getValidator = (valr: string): any =>{
+    if (valr == "Validators.required")
+      return Validators.required;
+    if (valr.startsWith("Validators.pattern(")){
+      console.log('valr:'+valr);
+      var pattern =`${valr.substring(valr.indexOf("('")+2, valr.indexOf("')"))}`;
+      console.log(pattern);
+      return Validators.pattern(pattern);
+    }
   }
 }

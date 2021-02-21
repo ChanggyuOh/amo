@@ -54,6 +54,8 @@ export class DynamicFormDialogComponent implements OnInit {
       
           const componentRef = viewContainerRef.createComponent<DynamicFormComponent>(componentFactory);
           componentRef.instance.fields = form;
+          //binding submitted data from dynamic form to this dialog event handler
+          componentRef.instance.submit.subscribe(msg => this.submit(msg));
         }
     }
     });
