@@ -5,12 +5,12 @@
     <mat-card style="height: calc(100% - 296px);">
         <mat-card-header>
             <mat-card-title>
-                <h4>{{viewData.name}}</h4>
+                <h4>{{formDefinition.name}}</h4>
             </mat-card-title>
-            <mat-card-subtitle><h5>{{viewData.description}}</h5></mat-card-subtitle>
+            <mat-card-subtitle><h5>{{formDefinition.description}}</h5></mat-card-subtitle>
         </mat-card-header>
     <div>
-        <formio [form]="form" (submit)="onSubmit($event)" [refresh]="refreshForm"></formio>
+        <dynamicFormAnchor></dynamicFormAnchor>
     </div>
     </mat-card>
 </div>

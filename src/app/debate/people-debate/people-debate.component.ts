@@ -71,8 +71,8 @@ export class PeopleDebateComponent implements OnInit {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(DynamicFormDialogComponent, {
-      width: '1800px',
-      height: '840px',
+      width: '700px',
+      height: '540px',
       data: environment.peopleDebateFormId
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -29,86 +29,7 @@ export class MyFormViewerComponent implements OnInit {
   currentForm: FormDefinitionElement = {id:0,name:'',description:'',definition:null};
 
   regConfig: FieldConfig[];
-data = `[{
-  "type": "input",
-  "label": "Username",
-  "inputType": "text",
-  "name": "name",
-  "validations": [{
-          "name": "required",
-          "validator": "Validators.required",
-          "message": "Name Required"
-      },
-      {
-        "name": "pattern",
-        "validator": "Validators.pattern('^[a-zA-Z]+$')",
-        "message": "Accept only text"
-      }
-  ]
-},
-{
-  "type": "input",
-  "label": "Email Address",
-  "inputType": "email",
-  "name": "email",
-  "validations": [{
-    "name": "required",
-    "validator": "Validators.required",
-    "message": "Email Required"
-      },
-      {
-        "name": "pattern",
-        "validator": "Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')",
-          "message": "Invalid email"
-      }
-  ]
-},
-{
-  "type": "input",
-  "label": "Password",
-  "inputType": "password",
-  "name": "password",
-  "validations": [{
-    "name": "required",
-    "validator": "Validators.required",
-    "message": "Password Required"
-  }]
-},
-{
-  "type": "radiobutton",
-  "label": "Gender",
-  "name": "gender",
-  "options": ["Male", "Female"],
-  "value": "Male"
-},
-{
-  "type": "date",
-  "label": "DOB",
-  "name": "dob",
-  "validations": [{
-    "name": "required",
-    "validator": "Validators.required",
-    "message": "Date of Birth Required"
-  }]
-},
-{
-  "type": "select",
-  "label": "Country",
-  "name": "country",
-  "value": "UK",
-  "options": ["India", "UAE", "UK", "US"]
-},
-{
-  "type": "checkbox",
-  "label": "Accept Terms",
-  "name": "term",
-  "value": true
-},
-{
-  "type": "button",
-  "label": "Save"
-}
-]`;
+
   getValidator(valr: string): any {
     if (valr == "Validators.required")
       return Validators.required;
@@ -129,13 +50,13 @@ data = `[{
       this.formList = res;
       this.currentDynamicForm = new DynamicFormItem(DynamicFormComponent, this.getFormData(0));
     });
-    
-    var o = JSON.parse(this.data);
-    var obj = this.buildObj(o);
-    //this.regConfig = obj;
   }
 
   ngOnInit(): void {
+  }
+
+  onFormPreviewClicked = (index:number):void => {
+    this.loadComponent(index);
   }
 
   loadComponent = (index:number) => {
@@ -195,10 +116,6 @@ data = `[{
   }
 
   submit(val){}
-
-  onFormPreview = (index:number):void => {
-    this.loadComponent(index);
-  }
 
   getFormData = (index:number):any => {
     let currentForm = JSON.parse(this.formList[index].definition);
