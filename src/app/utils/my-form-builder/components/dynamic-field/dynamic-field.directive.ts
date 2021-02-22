@@ -14,8 +14,8 @@ import {
   import { DateComponent } from "../date/date.component";
   import { RadiobuttonComponent } from "../radiobutton/radiobutton.component";
   import { CheckboxComponent } from "../checkbox/checkbox.component";
-  //import { FileUploadComponent} from "../fileupload/fileupload.old.component";
   import { MyFileUploadComponent } from "../fileupload/fileupload.component";
+  import { MyTextAreaComponent } from "../input/textarea.component";
   const componentMapper = {
     input: InputComponent,
     button: ButtonComponent,
@@ -23,7 +23,7 @@ import {
     date: DateComponent,
     radiobutton: RadiobuttonComponent,
     checkbox: CheckboxComponent,
-    //fileupload: FileUploadComponent
+    textarea: MyTextAreaComponent,
     fileupload: MyFileUploadComponent
   };
   @Directive({

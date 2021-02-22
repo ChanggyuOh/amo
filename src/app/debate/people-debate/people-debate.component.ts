@@ -21,7 +21,9 @@ export class PeopleDebateComponent implements OnInit {
   sub: any;
   public id: number;
   public peopleDebateItem: PeopleDebateItem;
-  public candidates: PeopleDebateCandidateItem[];
+  public candidateData: PeopleDebateCandidateItem[];
+  public candidates: CandidateItem[];
+
   user: SocialUser;
   loggedIn: boolean;
   data: any;
@@ -48,18 +50,24 @@ export class PeopleDebateComponent implements OnInit {
         this.id =parseInt(params.get('id'));
         if (this.id > 0 && this.user != null)
         {
+          // get debate data
           this.repoService.getData('debate/people/'+this.id,this.user)
           .subscribe((res:any) => {
             this.peopleDebateItem = res;
-            console.log("peopleDebateDate:"+res.title);
+            // console.log("peopleDebateDate:"+res.title);
           });
+
+          // get candidates data
           this.repoService.getData(`debate/people/${this.id}/candidate`,this.user)
           .subscribe((res:PeopleDebateCandidateItem[]) => {
-            this.candidates = res;
+            this.candidateData = res;
+            this.candidates = new Array();
             for(let i=0; i < res.length; i++) {
-              console.log("candidateId:"+res[i].id);
-              console.log("debateId:"+res[i].debateId);
-              console.log(res[i]);
+              var candidate: any = res[i].candidate;
+              (candidate as CandidateItem).id = res[i].id;
+              (candidate as CandidateItem).debateId = res[i].debateId;
+              this.candidates.push(candidate);
+              console.log(this.candidates[i]);
             }
           });
         }
@@ -72,24 +80,39 @@ export class PeopleDebateComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DynamicFormDialogComponent, {
       width: '700px',
-      height: '540px',
+      height: '640px',
       data: environment.peopleDebateFormId
     });
     dialogRef.afterClosed().subscribe(result => {
-      //console.log('The dialog was closed');
-      
       if (result != null)
       {
-        var newCandidate = {debateId: this.id, candidate: result };
-        this.repoService.create("debate/people/candidate", newCandidate, null)
-        .subscribe((res:any) => {
-          this.peopleDebateItem = res;
-          console.log("candidateId:"+res);
-        });
-        console.log(result);
+        var newCandidate = this.addNewCandidate("",result);
+        var postData = {debateId: this.id, candidate: result };
+        this.repoService.create("debate/people/candidate", postData, null)
+        .subscribe((res:any) => newCandidate.id = res);
       }
     });
   }
+  addNewCandidate = (candidateId: string, candiateFromDialog: CandidateItem): CandidateItem => {
+    if (candiateFromDialog != null)
+    {
+      var candidate: CandidateItem ={    
+        id: candidateId,
+        debateId: this.id,
+        firstname: candiateFromDialog.firstname,
+        lastname: candiateFromDialog.lastname,
+        phoneNumber: "",
+        candidatesPictureLink: candiateFromDialog.candidatesPictureLink,
+        candidatesPublicProfileLink: candiateFromDialog.candidatesPublicProfileLink,
+        email1: "",
+        comment: candiateFromDialog.comment,
+        supports: null};
+
+      this.candidates.push(candidate);
+      return candidate;
+    }
+  }
+
   toggleCandidateView = (isListView:boolean) => {
     var view = document.getElementById("my-candidates");
     if (isListView && view.classList.contains("my-candidate-ul-click"))

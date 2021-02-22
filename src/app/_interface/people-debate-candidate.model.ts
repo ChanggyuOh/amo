@@ -5,13 +5,16 @@ export interface PeopleDebateCandidateItem {
   }
 
   export interface CandidateItem {
-      firstname: string;
-      lastname: string;
-      phoneNumber: string;
-      candidatesPictureLink: string;
-      candidatesPublicProfileLink: string;
-      email1: string;
-      supports: OpinionItem[];
+    id: string,
+    debateId: number;
+    firstname: string;
+    lastname: string;
+    phoneNumber: string;
+    candidatesPictureLink: string;
+    candidatesPublicProfileLink: string;
+    email1: string;
+    comment: string;
+    supports: OpinionItem[];
   }
 
   export interface OpinionItem {

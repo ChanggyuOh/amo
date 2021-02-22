@@ -64,12 +64,14 @@
     <li class="my-candidate-li" *ngFor="let c of candidates">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>{{c.candidate.firstname}} {{c.candidate.lastname}}</mat-card-title>
+          <mat-card-title>{{c.firstname}} {{c.lastname}}</mat-card-title>
         </mat-card-header>
-        <img class="card-image" mat-card-image *ngIf="c.candidate.candidatesPictureLink" src="{{c.candidate.candidatesPictureLink}}">
+        <img class="card-image" mat-card-image *ngIf="c.candidatesPictureLink" src="{{c.candidatesPictureLink}}">
         <mat-card-content>
           <p>
-            {{c.candidate ? c.candidate.supports[0].comment: ""}}
+            {{(c && c.comment)? c.comment: ""}}
+            {{(c && c.supports)? c.supports[0].comment: ""}}
+            
           </p>
         </mat-card-content>
         <mat-card-actions>

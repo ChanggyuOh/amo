@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild, ElementRef, EventEmitter, ViewContainerRef, ComponentFactoryResolver, Input } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, EventEmitter, ViewContainerRef, ComponentFactoryResolver, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { RepositoryService } from 'src/app/shared/repository.service';
@@ -9,7 +9,6 @@ import { FieldConfig, Validator } from '../my-form-builder/components/field.inte
 import { DynamicFormComponent } from '../my-form-builder/components/dynamic-form/dynamic-form.component';
 import { DynamicFormItem } from '../my-form-viewer/dynamic-form-item';
 import { AnchorDirective } from '../my-form-viewer/anchor.directive';
-import { FormDefinitionElement } from '../my-form-builder/my-form-builder.component';
 
 @Component({
   selector: 'app-dynamic-form-dialog',
@@ -23,7 +22,6 @@ export class DynamicFormDialogComponent implements OnInit {
   public form: Object;
   public refreshForm: EventEmitter<FormioRefreshValue> = new EventEmitter();
   public formDefinition: FormDefinition;
-  
   
   constructor(
     public dialogRef: MatDialogRef<DynamicFormDialogComponent>,
@@ -108,8 +106,10 @@ export class DynamicFormDialogComponent implements OnInit {
     return arry;
   }
 
-  submit(val){
-    console.log("submit clicked");
+  submit = (val: any):void => {
+    var json = JSON.stringify(val);
+    console.log("submit clicked:"+json);
+    this.dialogRef.close(val);
   }
 
   getValidator = (valr: string): any =>{
@@ -122,21 +122,8 @@ export class DynamicFormDialogComponent implements OnInit {
       return Validators.pattern(pattern);
     }
   }
-  public onSubmit = (event: any): void => {
-    // console.log("state:"+event.state);
-    // console.log(event);
-    this.dialogRef.close(event.data);
-  }
 
   public onNoClick = (): void => {
     this.dialogRef.close();
-  }
-
-  onChange(event) {
-   //console.log("event:"+$event);
-   this.refreshForm.emit({
-      property: 'form',
-      value: event.form
-    });
   }
 }

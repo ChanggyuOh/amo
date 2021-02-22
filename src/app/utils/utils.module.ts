@@ -28,6 +28,7 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { NgTerminalModule } from 'ng-terminal';
 import { MyFormBuilderComponent } from './my-form-builder/my-form-builder.component';
 import { InputComponent } from "./my-form-builder/components/input/input.component";
+import { MyTextAreaComponent } from "./my-form-builder/components/input/textarea.component";
 import { ButtonComponent } from "./my-form-builder/components/button/button.component";
 import { SelectComponent } from "./my-form-builder/components/select/select.component";
 import { DateComponent } from "./my-form-builder/components/date/date.component";
@@ -85,7 +86,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 };
 
 @NgModule({
-  declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent, TerminelComponent, MyFormBuilderComponent, InputComponent,MyFileUploadComponent,
+  declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent, TerminelComponent, MyFormBuilderComponent, InputComponent, MyTextAreaComponent, MyFileUploadComponent,
     ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent, MyFormViewerComponent, AnchorDirective],
   imports: [
     CommonModule,

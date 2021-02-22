@@ -131,7 +131,7 @@ export class MyFormBuilderComponent implements OnInit {
                     };
                       this.configList.push(textItem2);
                       break;
-                    case "inputtextarea": this.previewList.push({ icon:'text_snippet', desc:'Input TextArea'});
+                    case "textarea": this.previewList.push({ icon:'text_snippet', desc:'Input TextArea'});
                     let textItem3:FieldConfig = {
                       label:element["label"],
                       type:element["type"], 
@@ -256,7 +256,7 @@ export class MyFormBuilderComponent implements OnInit {
       case 'Input File': newItem.type = "fileupload";
         newItem.inputType ="fileupload";
         break;
-      case 'Input TextArea': newItem.type = "inputtextarea";
+      case 'Input TextArea': newItem.type = "textarea";
         newItem.inputType ="textarea";
         break;
       case 'Checkbox': newItem.type = "checkbox";
