@@ -52,6 +52,11 @@ export class RepositoryService {
         'Authorization': 'Bearer fb:' + token
       });
     }
+    else{
+      headers = new HttpHeaders({
+          'Content-Type': 'application/json'
+        });
+  }
     /**
      * returns options: {
       headers?: HttpHeaders|{[header: string]: string | string[]},

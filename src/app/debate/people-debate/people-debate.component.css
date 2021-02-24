@@ -1,86 +1,302 @@
-.bottom-left {
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
+.container {
+  background-color: dimgrey;
+}
+.showCandidateDetail {
+  flex-direction: column;
+  background-color: #3f51b5;
+  width: 83vw;
+  z-index: 1;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .photo {
+    height: 260px;
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: contain;
+    position: relative;
   }
-  
-  .top-left {
-    position: absolute;
-    top: 8px;
-    left: 16px;
-  }
-  
-  .top-right {
-    position: absolute;
-    top: 8px;
-    right: 16px;
-  }
-  
-  .bottom-right {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
-  }
-  
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .myfeed-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .myfeed-full-width {
-    width: 100%;
-  }
-
-  .myfeed-card {
-    /* max-width: 400px; */
-    margin-bottom: 10px;
-  }
-  .container {
-    display: flex;
+   
+  .my-ul{
+    /* FDI(for detail information): https://app.gitbook.com/@oh-csharp/s/fyi/about-flex-layout */
+    display:flex;
+    flex-flow: row wrap;
     align-items: center;
+    align-content: flex-start;
+    margin:auto;
+    list-style: none;
+  }
+  .my-li{
+    padding: 5px;
+    width: 64px;
+    margin-top: 10px;
+  }
+  ul {
+    padding: 0px;
+  }
+  .my-candidate-ul{
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    /* justify-content: space-around; */
+    align-content: flex-start;
+    align-items: stretch;
+    margin:auto;
+    list-style: none;
+  }
+  .my-candidate-li{
+    padding: 5px;
+    width: 46%;
+    margin-top: 10px;
+  }
+  
+  .my-candidate-ul-click{
+    flex-flow: column;
     justify-content: center;
+    align-content: center;
+    align-items: center;
   }
-
-  mat-card img{
+  
+  .my-candidate-li-click{
+    width: 90%;
+  }
+  .card-image{
+    margin: 0px;
     object-fit: cover; /*this makes the image in src fit to the size specified below*/
     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .photo {
+    height: 260px;
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: contain;
+    position: relative;
+  }
+   
+  .my-ul{
+    /* FDI(for detail information): https://app.gitbook.com/@oh-csharp/s/fyi/about-flex-layout */
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: flex-start;
+    margin:auto;
+    list-style: none;
+  }
+  .my-li{
+    padding: 5px;
+    width: 64px;
+    margin-top: 10px;
+  }
+  ul {
+    padding: 0px;
+  }
+  .my-candidate-ul{
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    /* justify-content: space-around; */
+    align-content: flex-start;
+    align-items: stretch;
+    margin:auto;
+    list-style: none;
+  }
+  .my-candidate-li{
+    padding: 5px;
+    width: 270px;
+    margin-top: 10px;
+  }
+  
+  .my-candidate-ul-click{
+    flex-flow: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  
+  .my-candidate-li-click{
+    width: 1111px;
+  }
+  .card-image{
+    margin: 0px;
+    object-fit: cover; /*this makes the image in src fit to the size specified below*/
+    width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .photo {
     height: 250px;
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: contain;
+    position: relative;
   }
-
-  mat-card iframe{
+  
+  .card-image{
+    margin: 0px;
     object-fit: cover; /*this makes the image in src fit to the size specified below*/
     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    height: 300px;
   }
+  
+  .my-ul{
+    /* FDI(for detail information): https://app.gitbook.com/@oh-csharp/s/fyi/about-flex-layout */
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: flex-start;
+    margin:auto;
+    list-style: none;
+  }
+  .my-li{
+    padding: 5px;
+    width: 64px;
+    margin-top: 10px;
+  }
+  .my-candidate-ul{
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    /* justify-content: space-around; */
+    align-content: flex-start;
+    align-items: stretch;
+    margin:auto;
+    list-style: none;
+  }
+  .my-candidate-li{
+    padding: 5px;
+    width: 240px;
+    margin-top: 10px;
+  }
+  
+  .my-candidate-ul-click{
+    flex-flow: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  
+  .my-candidate-li-click{
+    width: auto;
+  }
+} 
 
-  .example-box.cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .photo {
+    height: 250px;
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: contain;
+    position: relative;
   }
   
-  .example-chip .cdk-drop-list-dragging {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  .card-image{
+    margin: 0px;
+    object-fit: cover; /*this makes the image in src fit to the size specified below*/
+    width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
   }
   
-  .import-error {
-    color: red;
-    padding: 20px;
-  
-    position: absolute;
-    top: 0;
-    left: 0;
+  .my-ul{
+    /* FDI(for detail information): https://app.gitbook.com/@oh-csharp/s/fyi/about-flex-layout */
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: flex-start;
+    margin:auto;
+    list-style: none;
   }
-.photo {
-  height: 250px;
-  background-position: center;
-  background-repeat: repeat-x;
-  background-size: contain;
-  position: relative;
+  .my-li{
+    padding: 5px;
+    width: 64px;
+    margin-top: 10px;
+  }
+  .my-candidate-ul{
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+    margin:auto;
+    list-style: none;
+  }
+  .my-candidate-li{
+    padding: 5px;
+    width: 240px;
+    margin-top: 10px;
+  }
+  
+  .my-candidate-ul-click{
+    flex-flow: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  
+  .my-candidate-li-click{
+    width: auto;
+  }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .photo {
+    height: 250px;
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: contain;
+    position: relative;
+  }
+  
+  .card-image{
+    margin: 0px;
+    object-fit: cover; /*this makes the image in src fit to the size specified below*/
+    width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  }
+  
+  .my-ul{
+    /* FDI(for detail information): https://app.gitbook.com/@oh-csharp/s/fyi/about-flex-layout */
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: flex-start;
+    margin:auto;
+    list-style: none;
+  }
+  .my-li{
+    padding: 5px;
+    width: 64px;
+    margin-top: 10px;
+  }
+  .my-candidate-ul{
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+    margin:auto;
+    list-style: none;
+  }
+  .my-candidate-li{
+    padding: 5px;
+    width: 240px;
+    margin-top: 10px;
+  }
+  
+  .my-candidate-ul-click{
+    flex-flow: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  
+  .my-candidate-li-click{
+    width: auto;
+  }
 }

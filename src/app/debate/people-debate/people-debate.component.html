@@ -1,25 +1,23 @@
 <mat-card class="myfeed-card">
     <mat-card-header>
       <mat-card-title>
-          <p [innerHtml]="peopleDebateItem.title|safe:'html'"></p>
+          <p [innerHtml]="peopleDebateItem ? peopleDebateItem.title : ''|safe:'html'"></p>
       </mat-card-title>
       
       <mat-card-subtitle>
-        <p [innerHtml]="peopleDebateItem.details | safe:'html'"></p>
+        <p [innerHtml]="peopleDebateItem ? peopleDebateItem.details : '' | safe:'html'"></p>
       </mat-card-subtitle>
     </mat-card-header>
-    <!-- <img mat-card-imgage *ngIf="peopleDebateItem.imageUrl" [src]="peopleDebateItem.imageUrl | safe:'url'"> -->
-    <!-- <div *ngIf="peopleDebateItem.imageUrl" [ngStyle]="{width:100%; height: 200px;background-image: url('+peopleDebateItem.imageUrl'+');}"></div> -->
     <div style="width: 100%; height: 250px;">
         <div
-            *ngIf="peopleDebateItem.imageUrl"
+            *ngIf="peopleDebateItem && peopleDebateItem.imageUrl"
             class="photo"
             [ngStyle]="{'background-image': 'url(' + peopleDebateItem.imageUrl + ')'}"
             >
         </div>
     </div>
     <mat-card-content>
-      <iframe *ngIf="peopleDebateItem.videoUrl" 
+      <iframe *ngIf="peopleDebateItem && peopleDebateItem.videoUrl" 
         [src]="peopleDebateItem.videoUrl | safe:'resourceUrl'" 
         frameborder="0" 
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -27,7 +25,7 @@
         <mat-chip-list
         class="example-chip"
         cdkDropList 
-        *ngIf="peopleDebateItem.hashTags"
+        *ngIf="peopleDebateItem && peopleDebateItem.hashTags"
         cdkDropListOrientation="horizontal"
         (cdkDropListDropped)="drop($event)">
         <mat-chip
@@ -44,10 +42,67 @@
         <a mat-button><mat-icon>share</mat-icon></a>
     </mat-card-actions>
 </mat-card>
+<div>
 <div style="clear: both;"></div>
-<a mat-button (click)="openDialog()">add candidate<mat-icon>group_add</mat-icon>:</a>
-<div style="clear: both;"></div>
-<div style="width: 100%; height: 250px; background-color: dimgrey;">
+<ul class="my-ul">
+  <li class="my-li">
+    <a mat-button matTooltip="add candidate" (click)="openDialog()"><mat-icon>group_add</mat-icon></a>
+  </li>
+  <li class="my-li">
+    <a mat-button matTooltip="grid view" (click)="toggleCandidateView(true)"><mat-icon>grid_view</mat-icon></a>
+  </li>
+  <li class="my-li">
+    <a mat-button matTooltip="list view" (click)="toggleCandidateView(false)"><mat-icon>view_day</mat-icon></a>
+  </li>
+  <li class="my-li">
+    <a mat-button matTooltip="candidate panel settings" (click)="openDialog()"><mat-icon>settings</mat-icon></a>
+  </li>
+</ul>
 
+<div class="container">
+  <ul class="my-candidate-ul" id="my-candidates">
+    <li class="my-candidate-li" *ngFor="let c of candidates;  let i = index">
+      <mat-card [attr.id]="'candidateCard'+i">
+        <mat-card-header>
+          <mat-card-title>{{c.firstname}} {{c.lastname}}</mat-card-title>
+        </mat-card-header>
+        <img class="card-image" mat-card-image *ngIf="c.candidatesPictureLink" src="{{c.candidatesPictureLink}}">
+        <mat-card-content>
+          <mat-accordion class="example-headers-align">
+            <mat-expansion-panel 
+            [expanded]="step === i" (opened)="setStep(i)" (afterCollapse)="removeFullWidth(i)">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon>account_circle</mat-icon>
+                </mat-panel-title>
+                <mat-panel-description>
+                  more details
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>
+                {{(c && c.comment)? c.comment: ""}}
+                  {{(c && c.supports)? c.supports[0].comment: ""}}
+              </p>
+              <mat-action-row>
+                <button *ngIf="i!=0" mat-button color="warn" (click)="prevStep()">Previous</button>
+                <button *ngIf=" i != candidates.length-1" mat-button color="primary" (click)="nextStep()">Next</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </li>
+  </ul>
+  <ng-template *ngIf="candidates == null">
+    <mat-card>
+      <p>
+      No candidate !
+      </p>
+  </mat-card>
+  </ng-template>
     
 </div>
