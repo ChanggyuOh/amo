@@ -27,6 +27,8 @@ export class PeopleDebateComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
   data: any;
+  step:number = 0;
+  showDetailCssClass: string = "showCandidateDetail";
 
   constructor(private activatedroute:ActivatedRoute,
     private router:Router,
@@ -128,4 +130,28 @@ export class PeopleDebateComponent implements OnInit {
         view.children[i].classList.toggle("my-candidate-li-click");
     }
   }
+
+  setStep = (index: number) => {
+    this.step = index;
+    var card = document.getElementById("candidateCard"+index);
+    console.log("target:"+card);
+    if (!card.classList.contains(this.showDetailCssClass)){
+      card.classList.add(this.showDetailCssClass);
+    }
+    card.scrollIntoView(true);
+    card.scrollTo(0,0);
+  }
+
+  nextStep = () => {
+    this.step++;
+  }
+  prevStep = () => {
+    this.step--;
+  }
+  removeFullWidth = (index: number) => {
+    var card = document.getElementById("candidateCard"+index);
+    if (card.classList.contains(this.showDetailCssClass))
+      card.classList.remove(this.showDetailCssClass);
+  }
+
 }

@@ -1,6 +1,12 @@
 .container {
   background-color: dimgrey;
 }
+.showCandidateDetail {
+  flex-direction: column;
+  background-color: #3f51b5;
+  width: 83vw;
+  z-index: 1;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .photo {
@@ -58,7 +64,6 @@
     margin: 0px;
     object-fit: cover; /*this makes the image in src fit to the size specified below*/
     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    height: 160px;
   }
 }
 
@@ -119,7 +124,6 @@
     margin: 0px;
     object-fit: cover; /*this makes the image in src fit to the size specified below*/
     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    height: 250px;
   }
 }
 
@@ -137,7 +141,6 @@
     margin: 0px;
     object-fit: cover; /*this makes the image in src fit to the size specified below*/
     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    height: 250px;
   }
   
   .my-ul{
@@ -196,7 +199,6 @@
     margin: 0px;
     object-fit: cover; /*this makes the image in src fit to the size specified below*/
     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    height: 250px;
   }
   
   .my-ul{
@@ -255,7 +257,6 @@
     margin: 0px;
     object-fit: cover; /*this makes the image in src fit to the size specified below*/
     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    height: 250px;
   }
   
   .my-ul{
