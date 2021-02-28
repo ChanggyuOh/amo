@@ -49,8 +49,19 @@
         <button mat-menu-item routerLink="/utils/editor" (click)="onSidenavClose()">
             <mat-icon>web_asset</mat-icon><span>Editor</span>
         </button>        
-        <button mat-menu-item routerLink="/utils/form-builder" (click)="onSidenavClose()">
-            <mat-icon>dynamic_form</mat-icon><span>Form Builder</span>
+        <mat-menu #dynamicForms="matMenu">
+            <button mat-menu-item routerLink="/utils/form-builder"  (click)="onSidenavClose()">
+                <mat-icon>dynamic_form</mat-icon><span>Form Builder</span>
+            </button>  
+            <button mat-menu-item routerLink="/utils/form-viewer"  (click)="onSidenavClose()">
+                <mat-icon>dynamic_form</mat-icon><span>Form Viewer</span>
+            </button>  
+        </mat-menu>
+        <button mat-menu-item routerLink="/utils/tournament"  (click)="onSidenavClose()">
+            <mat-icon>all_inbox</mat-icon><span>Tournament</span>
+        </button>
+        <button mat-menu-item routerLink="/utils/video-chat" (click)="onSidenavClose()">
+            <mat-icon>chat</mat-icon><span>Video Chat</span>
         </button>
         <button mat-menu-item routerLink="/utils/blockly" (click)="onSidenavClose()">
             <mat-icon>all_inbox</mat-icon><span>Blockly</span>

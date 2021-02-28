@@ -11,7 +11,8 @@ import { ShaderComponent } from '../shader/shader.component';
 import { TerminelComponent } from '../terminel/terminel.component';
 import { MyFormBuilderComponent} from '../my-form-builder/my-form-builder.component';
 import { MyFormViewerComponent} from '../my-form-viewer/my-form-viewer.component';
-
+import { TournamentBracketComponent } from '../tournament-bracket/tournament-bracket.component';
+import { VideoChatComponent } from '../video-chat/video-chat.component';
 const routes: Routes = [
   { path: 'qr-gen', component: QrGenComponent },
   { path: 'term', component: TerminelComponent },
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: 'form-viewer', component: MyFormViewerComponent },
   { path: 'blockly', component: BlocklyComponent},
   { path: 'shader', component: ShaderComponent },
+  { path: 'tournament', component: TournamentBracketComponent },
+  { path: 'video-chat', component: VideoChatComponent },
 ];
 
 @NgModule({

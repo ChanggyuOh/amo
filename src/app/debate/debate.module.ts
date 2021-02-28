@@ -10,7 +10,7 @@ import { DebateRoutingModule } from './debate-routing.module';
 import { PeopleDebateComponent } from './people-debate/people-debate.component';
 import { PeopleDebateListComponent } from './people-debate-list/people-debate-list.component';
 import { CandidateDialogComponent } from './candidate-dialog/candidate-dialog.component';
-
+import { UtilsModule } from '../utils/utils.module';
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
@@ -48,6 +48,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReactiveFormsModule,
     SharedModule,
     SwiperModule,
+    UtilsModule,
     QuillModule.forRoot(),
   ],
   providers: [

@@ -40,6 +40,9 @@ import { DynamicFieldDirective } from "./my-form-builder/components/dynamic-fiel
 import { DynamicFormComponent } from "./my-form-builder/components/dynamic-form/dynamic-form.component";
 import { MyFormViewerComponent } from './my-form-viewer/my-form-viewer.component';
 import { AnchorDirective } from './my-form-viewer/anchor.directive';
+import { TournamentBracketComponent } from './tournament-bracket/tournament-bracket.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { VideoChatComponent } from './video-chat/video-chat.component';
 // Make sure we use fontawesome everywhere in Form.io renderers.
 (Formio as any).icons = 'fontawesome';
 
@@ -87,7 +90,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 
 @NgModule({
   declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, MyDynamicFormComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent, TerminelComponent, MyFormBuilderComponent, InputComponent, MyTextAreaComponent, MyFileUploadComponent,
-    ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent, MyFormViewerComponent, AnchorDirective],
+    ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent, MyFormViewerComponent, AnchorDirective, TournamentBracketComponent, UserListComponent, VideoChatComponent],
   imports: [
     CommonModule,
     UtilsRoutingModule,
@@ -115,6 +118,9 @@ const monacoConfig: NgxMonacoEditorConfig = {
     RadiobuttonComponent,
     CheckboxComponent,
     FileUploadComponent
+  ],
+  exports:[
+    TournamentBracketComponent
   ]
 })
 export class UtilsModule { }

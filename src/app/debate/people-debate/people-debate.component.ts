@@ -12,6 +12,7 @@ import { DynamicFormDialogComponent} from '../../utils/dynamic-form-dialog/dynam
 import { environment} from '../../../environments/environment'
 import { env } from 'process';
 import { PeopleDebateCandidateItem, CandidateItem, OpinionItem } from '../../_interface/people-debate-candidate.model';
+import { TournamentBracketComponent } from '../../utils/tournament-bracket/tournament-bracket.component';
 @Component({
   selector: 'app-people-debate',
   templateUrl: './people-debate.component.html',
@@ -23,7 +24,7 @@ export class PeopleDebateComponent implements OnInit {
   public peopleDebateItem: PeopleDebateItem;
   public candidateData: PeopleDebateCandidateItem[];
   public candidates: CandidateItem[];
-
+  isPageLoaded = false;
   user: SocialUser;
   loggedIn: boolean;
   data: any;
@@ -77,7 +78,7 @@ export class PeopleDebateComponent implements OnInit {
      }
 
   ngOnInit(): void {
-   
+    this.isPageLoaded =false;
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(DynamicFormDialogComponent, {
@@ -135,9 +136,9 @@ export class PeopleDebateComponent implements OnInit {
     this.step = index;
     var card = document.getElementById("candidateCard"+index);
     console.log("target:"+card);
-    if (!card.classList.contains(this.showDetailCssClass)){
-      card.classList.add(this.showDetailCssClass);
-    }
+    // if (!card.classList.contains(this.showDetailCssClass)){
+    //   card.classList.add(this.showDetailCssClass);
+    // }
     card.scrollIntoView(true);
     card.scrollTo(0,0);
   }
@@ -150,7 +151,7 @@ export class PeopleDebateComponent implements OnInit {
   }
   removeFullWidth = (index: number) => {
     var card = document.getElementById("candidateCard"+index);
-    if (card.classList.contains(this.showDetailCssClass))
+    if (card && card.classList.contains(this.showDetailCssClass))
       card.classList.remove(this.showDetailCssClass);
   }
 

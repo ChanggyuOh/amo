@@ -33,6 +33,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { NgTerminalModule } from 'ng-terminal';
+
 export function onMonacoLoad() {
  
   console.log((window as any).monaco);
