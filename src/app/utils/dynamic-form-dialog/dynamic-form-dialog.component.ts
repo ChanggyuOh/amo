@@ -3,7 +3,6 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { RepositoryService } from 'src/app/shared/repository.service';
 import { FormDefinition } from '../../_interface/form-definition.model';
-import { FormioRefreshValue } from '@formio/angular';
 import { Validators } from '@angular/forms';
 import { FieldConfig, Validator } from '../my-form-builder/components/field.interface';
 import { DynamicFormComponent } from '../my-form-builder/components/dynamic-form/dynamic-form.component';
@@ -20,7 +19,6 @@ export class DynamicFormDialogComponent implements OnInit {
   @Input() currentDynamicForm: DynamicFormItem;
   public pageSize:number = 20;
   public form: Object;
-  public refreshForm: EventEmitter<FormioRefreshValue> = new EventEmitter();
   public formDefinition: FormDefinition;
   
   constructor(

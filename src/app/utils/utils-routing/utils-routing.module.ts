@@ -5,7 +5,6 @@ import { QrGenComponent } from '../qr-gen/qr-gen.component';
 import { MyFlowyComponent } from '../my-flowy/my-flowy.component';
 import { MyFileExplorerComponent } from '../my-file-explorer/my-file-explorer.component';
 import { MyEditorComponent } from '../my-editor/my-editor.component';
-import { MyDynamicFormComponent } from '../my-dynamic-form/my-dynamic-form.component';
 import { BlocklyComponent } from '../blockly/blockly.component';
 import { ShaderComponent } from '../shader/shader.component';
 import { TerminelComponent } from '../terminel/terminel.component';
