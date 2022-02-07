@@ -41,7 +41,19 @@
                     </button>
                 </mat-menu>
             </li>
-
+            <li>
+                <button mat-button [matMenuTriggerFor]="finantialMenu">
+                    <mat-icon>account_balance</mat-icon>
+                    <span>Finance</span>
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+                <mat-menu #finantialMenu="matMenu">
+                    <button mat-menu-item routerLink="/finance/dogecoin">
+                        <mat-icon>donut_small</mat-icon>
+                        dogecoin chart
+                    </button>
+                </mat-menu>
+            </li>
         </ul>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items" fxHide.xs>
                         <li>
@@ -56,6 +68,9 @@
                     </button>
                     <button mat-menu-item routerLink="/utils/flowy">
                         <mat-icon>account_tree</mat-icon><span>Flowy</span>
+                    </button>
+                    <button mat-menu-item routerLink="/graph/editor">
+                        <mat-icon>account_tree</mat-icon><span>GraphEditor</span>
                     </button>
                     <button mat-menu-item routerLink="/utils/qr-gen">
                         <mat-icon>qr_code_2</mat-icon><span>QR-Code</span>
@@ -80,8 +95,8 @@
                     <button mat-menu-item routerLink="/utils/tournament">
                         <mat-icon>all_inbox</mat-icon><span>Tournament</span>
                     </button>
-                    <button mat-menu-item routerLink="/utils/video-chat">
-                        <mat-icon>chat</mat-icon><span>Video Chat</span>
+                    <button mat-menu-item routerLink="/utils/video-chat-room">
+                        <mat-icon>chat</mat-icon><span>Video Chat Room</span>
                     </button>
                     <button mat-menu-item routerLink="/utils/blockly">
                         <mat-icon>all_inbox</mat-icon><span>Blockly</span>

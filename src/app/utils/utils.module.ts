@@ -41,6 +41,8 @@ import { VideoChatComponent } from './video-chat/video-chat.component';
 import { RtcSignalRService} from '../shared/rtc-signalr.service';
 import { ChatSignalRService} from '../shared/chat-signalr.service';
 import { ChatMemberComponent } from './video-chat/chat-member/chat-member.component';
+import { VideoChatRoomComponent } from './video-chat/video-chat-room/video-chat-room.component';
+import { MyLogService } from '../shared/log.service';
 
 export function onMonacoLoad() {
   console.log((window as any).monaco);
@@ -86,7 +88,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 
 @NgModule({
   declarations: [QrGenComponent, MyFlowyComponent, FileExplorerComponent, NewFolderDialogComponent, RenameDialogComponent, MyFileExplorerComponent, MyEditorComponent, DynamicFormDialogComponent, BlocklyComponent, EditorDialogComponent, ShaderComponent, TerminelComponent, MyFormBuilderComponent, InputComponent, MyTextAreaComponent, MyFileUploadComponent,
-    ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent, MyFormViewerComponent, AnchorDirective, TournamentBracketComponent, VideoChatComponent, ChatMemberComponent],
+    ButtonComponent,SelectComponent, DateComponent, RadiobuttonComponent, CheckboxComponent, DynamicFieldDirective, DynamicFormComponent, MyFormViewerComponent, AnchorDirective, TournamentBracketComponent, VideoChatComponent, ChatMemberComponent, VideoChatRoomComponent],
   imports: [
     CommonModule,
     UtilsRoutingModule,
@@ -104,6 +106,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
   providers:[
     ChatSignalRService,
     RtcSignalRService,
+    MyLogService,
   ],
   entryComponents: [
     InputComponent,

@@ -11,6 +11,7 @@ import { TerminelComponent } from '../terminel/terminel.component';
 import { MyFormBuilderComponent} from '../my-form-builder/my-form-builder.component';
 import { MyFormViewerComponent} from '../my-form-viewer/my-form-viewer.component';
 import { TournamentBracketComponent } from '../tournament-bracket/tournament-bracket.component';
+import { VideoChatRoomComponent } from '../video-chat/video-chat-room/video-chat-room.component';
 import { VideoChatComponent } from '../video-chat/video-chat.component';
 const routes: Routes = [
   { path: 'qr-gen', component: QrGenComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'blockly', component: BlocklyComponent},
   { path: 'shader', component: ShaderComponent },
   { path: 'tournament', component: TournamentBracketComponent },
+  { path: 'video-chat-room', component: VideoChatRoomComponent },
   { path: 'video-chat', component: VideoChatComponent },
 ];
 

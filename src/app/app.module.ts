@@ -33,6 +33,8 @@ import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { NgTerminalModule } from 'ng-terminal';
+import { FinanceModule } from './finance/finance.module';
+import { GraphModule } from './graph/graph.module';
 
 export function onMonacoLoad() {
  
@@ -110,6 +112,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
     QuillModule.forRoot(),
     MonacoEditorModule.forRoot(monacoConfig),
     FontAwesomeModule,
+    FinanceModule,
+    GraphModule
   ],
   providers: [
     {

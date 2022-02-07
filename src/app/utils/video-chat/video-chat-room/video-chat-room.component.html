@@ -1,0 +1,29 @@
+<div *ngIf="!rooms ||rooms.length==0">
+    <mat-form-field>
+        <input matInput placeholder="Create a user name..." [(ngModel)]="userName">
+    </mat-form-field>
+    <button mat-raised-button [disabled]="!userName || userName === ''" (click)="joinAsync()">Join with username.</button>
+    <br/>
+</div>
+<div *ngIf="userName">
+    <mat-form-field>
+        <input matInput placeholder="Create a room..." [(ngModel)]="roomName" [disabled]="!userName || userName === ''">
+      </mat-form-field>
+      <button mat-raised-button [disabled]="!roomName || roomName === ''" (click)="connect()">Create</button>
+</div>
+
+<table mat-table *ngIf="rooms && rooms.length > 0" [dataSource]="rooms" class="mat-elevation-z8">
+    <ng-container matColumnDef="room">
+      <th mat-header-cell *matHeaderCellDef> Room </th>
+      <td mat-cell *matCellDef="let element"> {{element}} </td>
+    </ng-container>
+    <ng-container matColumnDef="join">
+        <th mat-header-cell *matHeaderCellDef> Join </th>
+        <td mat-cell *matCellDef="let element"> 
+            <button mat-button (click)="gotoChatroom(element)">Join
+            </button>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
