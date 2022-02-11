@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ColorSelector } from '../image-kit/lib/color-selector';
 import { GeglGraphicalHelper, geglNodeDefinitions } from '../image-kit/lib/gegl';
 import { DefaultGraphNodeRegistry } from './lib/default-graph-node-registry';
@@ -10,7 +10,8 @@ import { INodeGroupIO } from './lib/models/i-node-group-io';
 @Component({
   selector: 'app-graph-editor',
   templateUrl: './graph-editor.component.html',
-  styleUrls: ['./graph-editor.component.css']
+  styleUrls: ['./graph-editor.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GraphEditorComponent implements OnInit {
       // Create and customize editor

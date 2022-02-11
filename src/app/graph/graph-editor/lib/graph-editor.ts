@@ -118,7 +118,11 @@ export class GraphEditor implements IEditor, ICommandStackListener {
         const rect = this.parentElement.getBoundingClientRect();
 
         this.nodeFactory = options.nodeFactory;
+        this.canvas.width = document.body.clientWidth;
+        this.canvas.height = document.body.clientHeight;
+
         this.context = this.canvas.getContext('2d', {alpha: false});
+
         this.renderer = new Renderer(this.context, new Dimension(rect.width, rect.height), theme, options.graphicalHelper);
         this.commandStack.addListener(this);
         this.registerActions();
@@ -312,9 +316,11 @@ export class GraphEditor implements IEditor, ICommandStackListener {
     }
 
     private handleMouseWheel(ev) {
-        const event = makeEvent(ev);
-        this.state = this.state.handleMouseWheel(this, this.scalePosition(event));
-        this.debugState("MOUSE WHEEL");
+        if(ev.shiftKey){
+            const event = makeEvent(ev);
+            this.state = this.state.handleMouseWheel(this, this.scalePosition(event));
+            this.debugState("MOUSE WHEEL");
+        }
     }
 
     private handleKeyUp(ev) {

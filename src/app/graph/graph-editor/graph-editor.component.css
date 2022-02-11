@@ -13,7 +13,7 @@
 
 /* Selector */
 
-.selector-glass-pane {
+selector-glass-pane {
     position: fixed;
     top: 0;
     left: 0;
@@ -22,7 +22,7 @@
     z-index: 100;
 }
 
-.selector-glass-pane.hide {
+selector-glass-pane.hide {
     display: none;
 }
     

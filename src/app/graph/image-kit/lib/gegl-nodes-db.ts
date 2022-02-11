@@ -1,5 +1,22 @@
 export const gegl = [
     {
+        "name": "gimp:app",
+        "title": "Angular Application",
+        "description": "A angular application",
+        "categories": "project",
+        "inputs": ["input-1","input-2"],
+        "outputs": [],
+        "properties": [
+            {
+                "type": "string",
+                "id": "appname",
+                "label": "appname",
+                "blurb": "Angular Application Name",
+                "nick": "Name"
+            }
+        ]
+    },
+    {
         "name": "gimp:colorize",
         "title": "Colorize",
         "description": "Colorize the image",
